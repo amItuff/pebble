@@ -1,0 +1,169 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1280px;height:720px;background:#14110f;overflow:hidden}
+  :root{--ink:#f4ede1;--mute:#9a9183;--line:#2e2924;--panel:#1b1714;--accent:#d9795b;--slate:#9aa6af;--sand:#e3d2b0;--ok:#8fcf9b}
+  .stage{position:relative;width:1280px;height:720px;color:var(--ink);font-family:'Inter',sans-serif;
+    background:radial-gradient(900px 520px at 85% 90%,rgba(217,121,91,.16),transparent 60%),radial-gradient(700px 500px at 5% 0%,rgba(100,120,135,.16),transparent 60%),#14110f}
+  .scene{position:absolute;inset:0;opacity:0;pointer-events:none}
+  .mono{font-family:'JetBrains Mono',monospace}
+  /* scene 1 */
+  .top{position:absolute;left:60px;right:60px;top:36px;display:flex;align-items:center;gap:14px}
+  .logo{width:44px;height:44px}
+  .brand{font-weight:800;font-size:26px;letter-spacing:-.03em}
+  .ask{position:absolute;left:60px;right:60px;top:104px;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:18px 22px;font-size:24px;min-height:66px}
+  .ask small{display:block;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--mute);margin-bottom:6px;text-transform:uppercase}
+  .caret{display:inline-block;width:11px;height:24px;background:var(--accent);vertical-align:-4px;margin-left:2px}
+  .panes{position:absolute;left:60px;right:60px;top:196px;bottom:70px;display:flex;gap:24px}
+  .pane{flex:1;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px 22px;position:relative;overflow:hidden}
+  .pane h3{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .pane.good h3{color:var(--accent)}
+  .count{font-size:14px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink);letter-spacing:.04em}
+  .pane.good .count{border-color:var(--accent);color:var(--accent)}
+  .txt{font-size:15.5px;line-height:1.42;color:#d8cfc0;white-space:pre-wrap}
+  .txt p{margin-bottom:9px}
+  .pane.good .txt{font-size:21px;color:var(--ink);line-height:1.55}
+  .warn{display:inline;background:rgba(217,121,91,.0);border-radius:6px;color:#ffd9cb}
+  .warn b{color:var(--accent);font-weight:700}
+  .pane.dim{opacity:.5}
+  .callout{position:absolute;left:22px;right:22px;bottom:18px;border-radius:12px;padding:12px 16px;font-size:18px;font-weight:600;background:rgba(217,121,91,.14);border:1px solid var(--accent);color:#ffd9cb}
+  .big{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:90px;background:rgba(20,17,15,.86)}
+  .big div{text-align:center}
+  .big b{display:block;font-family:'Inter Display','Inter',sans-serif;font-size:150px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .big span{font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+  .big .g b{color:var(--accent)}
+  .foot{position:absolute;left:60px;right:60px;bottom:24px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:13px;color:#6f675c;letter-spacing:.05em}
+  /* scene 2 */
+  .term{position:absolute;left:60px;right:60px;top:70px;bottom:70px;border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:26px 32px}
+  .term h2{font-family:'Inter Display','Inter',sans-serif;font-size:44px;font-weight:800;letter-spacing:-.03em;margin-bottom:22px}
+  .row{display:flex;gap:22px;font-family:'JetBrains Mono',monospace;font-size:21px;line-height:1;padding:11px 0;border-bottom:1px solid #26211d;opacity:0}
+  .row .cmd{width:400px;white-space:nowrap;color:var(--accent);font-weight:700}
+  .row .what{color:#d8cfc0;font-family:'Inter',sans-serif;font-size:21px}
+  /* scene 3 */
+  .end{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+  .end img{width:200px;height:200px}
+  .end h1{font-family:'Inter Display','Inter',sans-serif;font-weight:800;font-size:112px;letter-spacing:-.045em;line-height:1}
+  .end h1 span{color:var(--accent)}
+  .end p{font-size:30px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+  .end p em{font-style:normal;color:var(--slate)}
+  .cmdbox{margin-top:22px;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px 24px;font-family:'JetBrains Mono',monospace;font-size:20px;line-height:1.7;min-width:640px}
+  .cmdbox .p{color:var(--accent)}
+  .url{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--mute)}
+</style></head>
+<body><div class="stage">
+
+<div class="scene" id="s1">
+  <div class="top"><img class="logo" src="../logo.svg" alt=""><span class="brand">pebble</span></div>
+  <div class="ask"><small>You ask</small><span id="askText"></span><span class="caret" id="caret"></span></div>
+  <div class="panes" id="panes">
+    <div class="pane" id="paneL"><h3><span>Without pebble</span><span class="count mono" id="cL">0 words</span></h3><div class="txt" id="tL"></div></div>
+    <div class="pane good" id="paneR"><h3><span>With pebble</span><span class="count mono" id="cR">0 words</span></h3><div class="txt" id="tR"></div>
+      <div class="callout" id="callout" style="opacity:0">The risk warning stays.</div></div>
+  </div>
+  <div class="big" id="big" style="opacity:0">
+    <div><b id="bL">0</b><span>words without</span></div>
+    <div class="g"><b id="bR">0</b><span>words with pebble</span></div>
+  </div>
+  <div class="foot"><span>Illustrative example. Not a benchmark.</span><span>Same question, same facts.</span></div>
+</div>
+
+<div class="scene" id="s2">
+  <div class="term"><h2>Nine small commands. Only one loads by itself.</h2><div id="rows"></div></div>
+  <div class="foot"><span>The other eight are manual: they only run when you call them.</span><span></span></div>
+</div>
+
+<div class="scene end" id="s3">
+  <img src="../logo.svg" alt="">
+  <h1><span>p</span>ebble</h1>
+  <p>Answer first. <em>Cut the rest.</em></p>
+  <div class="cmdbox"><div><span class="p">&gt;</span> <span id="c1"></span></div><div><span class="p">&gt;</span> <span id="c2"></span></div></div>
+  <div class="url">github.com/amItuff/pebble</div>
+</div>
+
+</div>
+<script>
+const Q = "Should I use MongoDB or Postgres for my small booking app?";
+const VERBOSE = `Great question! Choosing between MongoDB and PostgreSQL really depends on a number of factors, so let me walk you through the main considerations.
+
+MongoDB is a popular document database that offers a flexible schema, which can be very helpful when your data model is evolving quickly. It is also known for its horizontal scalability.
+
+PostgreSQL, on the other hand, is a powerful relational database with strong support for transactions, constraints, and complex queries. It has been around for a long time and is widely trusted.
+
+For a booking app, you will likely have entities such as users, resources, and reservations, which are naturally relational. You'll also want to make sure that two people can't book the same slot at the same time, which transactions and constraints handle very well.
+
+That said, both options can work, and the best choice depends on your team's experience and your long-term plans. I hope this helps! Let me know if you'd like me to go into more detail on either option.`;
+const MAIN = "Postgres. Bookings are relational and need transactions to prevent double-booking.\n";
+const WARN = "⚠ If two users can book the same slot, enforce it with a unique constraint, not app code.";
+const PEBBLE = MAIN + WARN;
+const CMDS = [
+  ["/pebble brief|plain|full|off", "Set the reply length. Plain is the default."],
+  ["/pebble-intent", "Restate the real question, then answer."],
+  ["/pebble-verify", "Tag claims [sure] [guess] [unchecked]."],
+  ["/pebble-audit", "Find token waste in this chat."],
+  ["/pebble-handoff", "Compress this chat for a fresh one."],
+  ["/pebble-rewrite", "Tighten your prompt before you send it."],
+  ["/pebble-lint", "Score a SKILL.md."],
+  ["/pebble-gain", "Show measured results, or say there are none."],
+  ["/pebble-help", "One-screen reference."],
+];
+const INSTALL = ["/plugin marketplace add amItuff/pebble", "/plugin install pebble@pebble"];
+const words = s => (s.trim().match(/\S+/g) || []).length;
+const WL = words(VERBOSE), WR = words(PEBBLE);
+window.WORDS = {without: WL, withPebble: WR};
+
+const T = {s1End: 14000, s2End: 21000, total: 26000};
+const ease = x => x<0?0:x>1?1:x*x*(3-2*x);
+const clamp01 = x => x<0?0:x>1?1:x;
+const $ = id => document.getElementById(id);
+
+// build command rows once
+CMDS.forEach(([c,w]) => { const r=document.createElement('div'); r.className='row'; r.innerHTML=`<span class="cmd">${c}</span><span class="what">${w}</span>`; $('rows').appendChild(r); });
+const rows = [...document.querySelectorAll('.row')];
+
+function typed(str, t, start, cps){ const n = Math.max(0, Math.min(str.length, Math.floor((t-start)/1000*cps))); return str.slice(0,n); }
+
+window.render = function(t){
+  // scene visibility with cross-fades
+  const f1 = 1 - ease((t-(T.s1End-500))/500);
+  const f2 = ease((t-(T.s1End-300))/500) * (1 - ease((t-(T.s2End-500))/500));
+  const f3 = ease((t-(T.s2End-300))/500);
+  $('s1').style.opacity = f1; $('s2').style.opacity = f2; $('s3').style.opacity = f3;
+
+  // scene 1
+  const ask = typed(Q, t, 300, 55);
+  $('askText').textContent = ask;
+  $('caret').style.opacity = (ask.length < Q.length || Math.floor(t/450)%2===0) ? 1 : 0;
+  const panesIn = ease((t-1900)/500);
+  $('panes').style.opacity = panesIn; $('panes').style.transform = `translateY(${(1-panesIn)*14}px)`;
+  const L = typed(VERBOSE, t, 2500, 150);
+  const R = typed(PEBBLE, t, 2500, 150);
+  const esc = x => x.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  $('tL').innerHTML = L.split('\n\n').map(x => '<p>' + esc(x) + '</p>').join('');
+  const mi = R.indexOf("⚠");
+  $('tR').innerHTML = mi < 0 ? esc(R) : esc(R.slice(0,mi)) + `<span class="warn" id="warn"><b>⚠</b>` + esc(R.slice(mi+1)) + `</span>`;
+  $('cL').textContent = words(L) + " words";
+  $('cR').textContent = words(R) + " words";
+  const lDone = 2500 + VERBOSE.length/150*1000;
+  // big numbers
+  const bigT = ease((t-(lDone+700))/500) * (1 - ease((t-(lDone+3300))/500));
+  $('big').style.opacity = bigT;
+  $('bL').textContent = WL; $('bR').textContent = WR;
+  // callout on warning
+  const co = ease((t-(lDone+3800))/400) * (1 - ease((t-(T.s1End-700))/400));
+  $('callout').style.opacity = co;
+  $('paneL').classList.toggle('dim', t > lDone+3800);
+  const w = $('warn'); if (w) w.style.background = (co>0.05) ? `rgba(217,121,91,${0.22*co})` : 'transparent';
+
+  // scene 2
+  const t2 = t - (T.s1End);
+  rows.forEach((r,i) => { r.style.opacity = ease((t2-(450+i*470))/260); r.style.transform = `translateX(${(1-ease((t2-(450+i*470))/260))*-14}px)`; });
+
+  // scene 3
+  const t3 = t - T.s2End;
+  $('c1').textContent = typed(INSTALL[0], t3, 900, 32);
+  $('c2').textContent = typed(INSTALL[1], t3, 900 + INSTALL[0].length/32*1000 + 350, 32);
+};
+window.DURATION = T.total;
+render(0);
+</script></body></html>

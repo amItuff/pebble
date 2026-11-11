@@ -1,0 +1,26 @@
+name: A reply pebble made worse
+description: Pebble cut something it should not have, or ignored a rule.
+labels: [bug]
+body:
+  - type: textarea
+    id: prompt
+    attributes: {label: Your prompt, description: Paste exactly what you sent.}
+    validations: {required: true}
+  - type: textarea
+    id: reply
+    attributes: {label: The reply you got}
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes: {label: What it should have said}
+    validations: {required: true}
+  - type: input
+    id: setup
+    attributes: {label: Tool and model, description: "e.g. Claude Code + plugin, ChatGPT custom instructions"}
+    validations: {required: true}
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong
+      options: [Dropped a risk warning, Shortened code or a number, Too short to be correct, Ignored the rules, Added a pointless warning, Other]
+    validations: {required: true}

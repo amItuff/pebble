@@ -1,0 +1,13 @@
+{
+  "name": "pebble",
+  "version": "0.1.0",
+  "description": "Short, honest AI replies. Finds the real question, answers it first, cuts the filler, and never drops a risk warning.",
+  "author": {
+    "name": "amItuff",
+    "url": "https://github.com/amItuff"
+  },
+  "homepage": "https://github.com/amItuff/pebble",
+  "repository": "https://github.com/amItuff/pebble",
+  "license": "MIT",
+  "keywords": ["concise", "tokens", "prompting", "skill", "answers", "productivity"]
+}

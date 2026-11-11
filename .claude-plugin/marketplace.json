@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "pebble",
+  "description": "Short, honest AI replies. Answer first, cut the filler, keep the warnings.",
+  "owner": {
+    "name": "amItuff",
+    "url": "https://github.com/amItuff"
+  },
+  "plugins": [
+    {
+      "name": "pebble",
+      "description": "Finds the real question, answers it first, cuts filler, never drops a risk warning. Plus 8 opt-in commands: intent, verify, audit, handoff, rewrite, lint, gain, help.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
