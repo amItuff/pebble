@@ -134,34 +134,35 @@ Short is the goal. Wrong or unsafe is the failure. These are fixed:
 
 ## Benchmark
 
-**Status: not yet measured.** This repo ships the harness, not made-up numbers. Until someone runs it, no savings percentage appears anywhere in this README, and `/pebble-gain` says so.
+Measured on 2026-11-11 with `claude-sonnet-5-5`, through the `claude` CLI ([`bench/run_cli.py`](bench/run_cli.py)): 24 fixed prompts, 3 runs per arm. Raw replies and token counts are committed in [`bench/results/raw/`](bench/results/raw/).
 
-What *is* measured, on this repo, today:
+| Arm | Median output tokens | Median words | Output-token cut | Risk warning kept (7 risk prompts) | `⚠` on non-risk prompts |
+|---|---|---|---|---|---|
+| no skill | 501.5 | 209.5 | n/a | 100% | 0% |
+| `plain` | 101.5 | 41.5 | **74.9%** | **100%** | 13.7% |
+| `brief` | 106.5 | 43.0 | 73.8% | 100% | 13.7% |
 
-| Fact | Value | How |
-|---|---|---|
-| Idle cost of all auto-loading descriptions | **~48 tokens** | `python scripts/lint_skill.py skills/` (estimate: characters / 4) |
-| Core skill body, loaded when it triggers | **~600 tokens** | same |
-| Descriptions of the 8 manual commands in your context | **not loaded** until you call them | `disable-model-invocation: true`; confirmed in the [Claude Code skills docs](https://code.claude.com/docs/en/skills). Skill names may still be listed. |
+Cut = geometric mean over prompts of median output tokens against the no-skill arm. Pebble was never longer than the baseline on any prompt. Loading the skill adds about **870 input tokens** per call.
 
-To measure the effect on replies yourself (needs an API key; zero dependencies):
+**Read these numbers with their limits:**
+
+- **`brief` did not cut more than `plain`.** `plain` replies are already about 40 words. The `brief` mode is not yet earning its place; see the roadmap.
+- **Not a quality measurement.** The automatic checks are keyword matches. I read the replies to all 7 risk prompts and found them correct with a sensible warning, but that was a read-through by the author's AI assistant, not a blind human review. `python bench/report.py --blind-sheet` writes a shuffled A/B sheet for you to judge.
+- **The baseline is "You are a helpful assistant." with tools off.** Your real default (Claude Code, claude.ai) has its own system prompt, so your cut may be smaller.
+- **Tuned on the same prompts.** The first run showed `⚠` on 49% of non-risk prompts, because an early rule also asked for a warning on "a very common mistake". I removed that clause and re-ran. Both runs are committed ([first report](bench/results/2026-11-11-run1-before-fix.md)), but the second was tuned against this prompt set, so treat it as optimistic.
+- The remaining 13.7% are mostly defensible (rewriting pushed git history, double-booking, floating-point money), so the false-alarm check is crude rather than proof of a defect.
+- One model, English only, 3 runs. The "asks when vague" check has only 2 prompts and is too noisy to quote.
+- **Output tokens usually cost several times more per token than input tokens** (check current pricing), which is why a smaller reply can outweigh the extra input, but the net depends on your pricing and caching. This repo does not claim a dollar saving.
+
+Also measured with `python scripts/lint_skill.py skills/`: the idle cost of all auto-loading descriptions is about 48 tokens (character count / 4). That estimate was too low for the skill body: it predicted ~600 tokens, and the real input overhead was ~870.
+
+Reproduce it, without an API key, if you have the `claude` CLI:
 
 ```bash
-export ANTHROPIC_API_KEY=...
-python bench/run.py --model claude-sonnet-5-5 --runs 3
-python bench/report.py
+python bench/run_cli.py --runs 3 && python bench/report.py
 ```
 
-It runs a [fixed set of 24 prompts](bench/prompts.json) in three arms (no skill, `plain`, `brief`) and reports, from the API's real `usage` numbers:
-
-- output-token change vs baseline (geometric mean), plus the **prompts where pebble was longer**, listed rather than hidden
-- input overhead of loading the skill
-- how often the risk warning **survived** on the 7 risk prompts, and how often it appeared where it should not
-- how often it asked a question on the 2 deliberately vague prompts
-
-Automatic checks cannot judge answer quality. `python bench/report.py --blind-sheet` writes a shuffled A/B sheet so you can judge by hand. Method and limits: [`bench/README.md`](bench/README.md).
-
-Did you run it? Please open a PR adding your raw file under `bench/results/raw/`. Results that make pebble look bad are the most useful ones.
+With an API key instead: `python bench/run.py`. Method and limits: [`bench/README.md`](bench/README.md). Please open a PR with your own run, especially if pebble loses.
 
 ## How it differs from other "short answer" skills
 
@@ -181,7 +182,7 @@ If you want maximum compression and like the voice, use those. If you want norma
 It is designed not to: rule 6 widens the answer when brevity would make it wrong, and the risk line is fixed. But quality is a measurement, not a promise. Use the blind sheet to check your own prompts.
 
 **Does it save money?**
-It reduces *output* tokens when replies were wordy. Loading the core skill adds input tokens (about 600 per load). Whether the net is positive depends on your usage; that is what `bench/` measures.
+It cut output tokens by about 75% in the benchmark above, and loading the core skill adds about 870 input tokens per call. Whether the net is positive depends on your pricing, caching and how wordy your replies were. This repo does not claim a dollar figure.
 
 **Why are 8 of the 9 skills manual?**
 Every auto-loading skill keeps its description in context in every chat. A token-saving tool should not spend tokens idling, so only the core one does.
@@ -194,7 +195,10 @@ Models drift from instructions in long contexts. Make it always on (see [Install
 
 ## Roadmap
 
-- [ ] First published benchmark run, including the losses
+- [x] First published benchmark run, including the false-alarm problem it exposed
+- [ ] Make `brief` measurably shorter than `plain`, or drop it
+- [ ] Blind human review of answer quality
+- [ ] Re-run on other models and on a prompt set not used for tuning
 - [ ] Vietnamese, Spanish and Chinese prompt sets for the benchmark
 - [ ] Optional hook that re-injects the rule after context compaction
 - [ ] `/pebble-review`: shorten a draft *you* wrote, keeping meaning
@@ -204,7 +208,7 @@ Models drift from instructions in long contexts. Make it always on (see [Install
 Bug reports, failing prompts and benchmark runs are the most valuable contributions. See [CONTRIBUTING.md](CONTRIBUTING.md). The whole project is plain Markdown plus three small Python scripts with no dependencies:
 
 ```bash
-python -m unittest discover -s tests      # 20 tests
+python -m unittest discover -s tests      # 21 tests
 python scripts/lint_skill.py skills/      # lint every skill
 python scripts/build_ports.py --check     # are the generated ports current?
 ```

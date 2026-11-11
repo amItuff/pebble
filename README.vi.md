@@ -134,34 +134,35 @@ Ngắn là mục tiêu. Sai hoặc nguy hiểm mới là thất bại. Các đi�
 
 ## Benchmark
 
-**Trạng thái: chưa đo.** Repo này cung cấp bộ công cụ đo, không phải con số bịa. Cho đến khi có người chạy, README không hiển thị bất kỳ phần trăm tiết kiệm nào, và `/pebble-gain` cũng nói đúng như vậy.
+Đo ngày 2026-11-11 với `claude-sonnet-5-5`, qua CLI `claude` ([`bench/run_cli.py`](bench/run_cli.py)): 24 prompt cố định, 3 lần chạy mỗi nhánh. Toàn bộ câu trả lời thô và số token được lưu trong [`bench/results/raw/`](bench/results/raw/).
 
-Những gì **đã đo được** trên chính repo này:
+| Nhánh | Token đầu ra (trung vị) | Số từ (trung vị) | Mức cắt token đầu ra | Giữ cảnh báo rủi ro (7 prompt rủi ro) | `⚠` ở prompt không rủi ro |
+|---|---|---|---|---|---|
+| không skill | 501,5 | 209,5 | n/a | 100% | 0% |
+| `plain` | 101,5 | 41,5 | **74,9%** | **100%** | 13,7% |
+| `brief` | 106,5 | 43,0 | 73,8% | 100% | 13,7% |
 
-| Dữ kiện | Giá trị | Cách đo |
-|---|---|---|
-| Chi phí nhàn rỗi của mọi mô tả tự động nạp | **~48 token** | `python scripts/lint_skill.py skills/` (ước tính: ký tự / 4) |
-| Thân skill lõi, nạp khi được kích hoạt | **~600 token** | như trên |
-| Mô tả của 8 lệnh thủ công trong ngữ cảnh | **không nạp** cho đến khi bạn gọi | `disable-model-invocation: true`; đã đối chiếu [tài liệu skill của Claude Code](https://code.claude.com/docs/en/skills). Tên skill vẫn có thể được liệt kê. |
+Mức cắt = trung bình nhân theo prompt của token đầu ra trung vị so với nhánh không skill. Pebble không dài hơn baseline ở prompt nào. Nạp skill thêm khoảng **870 token đầu vào** mỗi lần gọi.
 
-Để tự đo ảnh hưởng lên câu trả lời (cần API key; không phụ thuộc thư viện nào):
+**Hãy đọc số liệu cùng với các giới hạn:**
+
+- **`brief` không cắt thêm so với `plain`.** Câu trả lời `plain` đã chỉ khoảng 40 từ. Chế độ `brief` chưa xứng đáng tồn tại; xem lộ trình.
+- **Không đo chất lượng.** Các kiểm tra tự động chỉ là so khớp từ khóa. Tôi đã đọc câu trả lời của cả 7 prompt rủi ro và thấy đúng, có cảnh báo hợp lý, nhưng đó là trợ lý AI của tác giả đọc lại, không phải người chấm mù. `python bench/report.py --blind-sheet` tạo bảng A/B xáo trộn để bạn tự chấm.
+- **Baseline là "You are a helpful assistant." và tắt công cụ.** Mặc định thật của bạn (Claude Code, claude.ai) có system prompt riêng, nên mức cắt thực tế có thể nhỏ hơn.
+- **Đã chỉnh trên chính bộ prompt này.** Lần chạy đầu cho thấy `⚠` xuất hiện ở 49% prompt không rủi ro, vì một quy tắc cũ cũng đòi cảnh báo cho "một lỗi rất phổ biến". Tôi đã bỏ vế đó và chạy lại. Cả hai lần đều được lưu ([báo cáo lần đầu](bench/results/2026-11-11-run1-before-fix.md)), nhưng lần hai đã chỉnh theo bộ prompt này nên hãy coi là hơi lạc quan.
+- 13,7% còn lại phần lớn là cảnh báo có lý (viết lại lịch sử git đã đẩy, đặt trùng lịch, tiền tệ dấu phẩy động), nên chỉ số "cảnh báo sai" còn thô chứ không chứng minh lỗi.
+- Một mô hình, chỉ tiếng Anh, 3 lần chạy. Chỉ số "hỏi lại khi mơ hồ" chỉ có 2 prompt nên quá nhiễu để trích dẫn.
+- **Token đầu ra thường đắt hơn token đầu vào nhiều lần** (hãy xem bảng giá hiện tại), nên câu trả lời ngắn hơn có thể bù cho phần đầu vào thêm, nhưng kết quả ròng tùy giá và cơ chế cache của bạn. Repo này không tuyên bố tiết kiệm bao nhiêu tiền.
+
+Cũng đo bằng `python scripts/lint_skill.py skills/`: chi phí nhàn rỗi của mọi mô tả tự động nạp khoảng 48 token (số ký tự / 4). Ước tính đó thấp hơn thực tế với phần thân skill: dự đoán khoảng 600 token, đo thật là khoảng 870 token đầu vào.
+
+Tự chạy lại, không cần API key nếu bạn có CLI `claude`:
 
 ```bash
-export ANTHROPIC_API_KEY=...
-python bench/run.py --model claude-sonnet-5-5 --runs 3
-python bench/report.py
+python bench/run_cli.py --runs 3 && python bench/report.py
 ```
 
-Nó chạy [bộ 24 prompt cố định](bench/prompts.json) với ba nhánh (không skill, `plain`, `brief`) và báo cáo từ số `usage` thật của API:
-
-- mức thay đổi token đầu ra so với baseline (trung bình nhân), kèm **danh sách prompt mà pebble trả lời dài hơn**, không giấu
-- chi phí đầu vào khi nạp skill
-- tỷ lệ dòng cảnh báo rủi ro **còn giữ lại** trên 7 prompt có rủi ro, và tỷ lệ nó xuất hiện sai chỗ
-- tỷ lệ nó hỏi lại ở 2 prompt cố tình mơ hồ
-
-Kiểm tra tự động không đánh giá được chất lượng câu trả lời. `python bench/report.py --blind-sheet` tạo bảng A/B xáo trộn để bạn tự chấm. Phương pháp và giới hạn: [`bench/README.md`](bench/README.md).
-
-Bạn đã chạy thử? Hãy mở PR thêm file thô vào `bench/results/raw/`. Kết quả làm pebble trông tệ lại là kết quả hữu ích nhất.
+Nếu có API key: `python bench/run.py`. Phương pháp và giới hạn: [`bench/README.md`](bench/README.md). Hãy mở PR với lần chạy của bạn, nhất là khi pebble thua.
 
 ## Khác gì các skill "trả lời ngắn" khác
 
@@ -181,7 +182,7 @@ Nếu bạn cần nén tối đa và thích giọng đó, hãy dùng chúng. N�
 Thiết kế để không: quy tắc 6 mở rộng câu trả lời khi ngắn sẽ sai, và dòng cảnh báo là cố định. Nhưng chất lượng là thứ phải đo, không phải lời hứa. Hãy dùng bảng blind để kiểm tra prompt của riêng bạn.
 
 **Có tiết kiệm tiền không?**
-Nó giảm token *đầu ra* khi câu trả lời vốn dài dòng. Nạp skill lõi thêm token đầu vào (khoảng 600 mỗi lần nạp). Tổng cộng có lợi hay không tùy cách bạn dùng; đó là điều `bench/` đo.
+Trong benchmark ở trên nó cắt khoảng 75% token đầu ra, và nạp skill lõi thêm khoảng 870 token đầu vào mỗi lần gọi. Tổng cộng có lợi hay không tùy giá, cơ chế cache và độ dài dòng của câu trả lời. Repo này không tuyên bố con số tiền cụ thể.
 
 **Sao 8 trong 9 skill là thủ công?**
 Mỗi skill tự động nạp đều giữ phần mô tả trong ngữ cảnh ở mọi cuộc chat. Công cụ tiết kiệm token không nên tốn token khi nhàn rỗi, nên chỉ skill lõi tự nạp.
@@ -194,7 +195,10 @@ Mô hình có xu hướng lơi chỉ dẫn trong ngữ cảnh dài. Hãy bật l
 
 ## Lộ trình
 
-- [ ] Lần chạy benchmark đầu tiên được công bố, gồm cả các ca thua
+- [x] Lần chạy benchmark đầu tiên được công bố, gồm cả vấn đề cảnh báo sai mà nó phát hiện
+- [ ] Làm `brief` ngắn hơn `plain` một cách đo được, hoặc bỏ nó
+- [ ] Người chấm mù về chất lượng câu trả lời
+- [ ] Chạy lại trên mô hình khác và bộ prompt không dùng để chỉnh
 - [ ] Bộ prompt benchmark tiếng Việt, Tây Ban Nha và Trung Quốc
 - [ ] Hook tùy chọn nạp lại quy tắc sau khi ngữ cảnh bị nén
 - [ ] `/pebble-review`: rút gọn bản nháp *bạn* viết, giữ nguyên ý
@@ -204,7 +208,7 @@ Mô hình có xu hướng lơi chỉ dẫn trong ngữ cảnh dài. Hãy bật l
 Báo lỗi, prompt làm pebble thất bại và kết quả benchmark là những đóng góp giá trị nhất. Xem [CONTRIBUTING.md](CONTRIBUTING.md). Toàn bộ dự án là Markdown cùng ba script Python nhỏ, không phụ thuộc thư viện nào:
 
 ```bash
-python -m unittest discover -s tests      # 20 test
+python -m unittest discover -s tests      # 21 test
 python scripts/lint_skill.py skills/      # lint mọi skill
 python scripts/build_ports.py --check     # các bản port đã cập nhật chưa?
 ```

@@ -2,9 +2,17 @@
 
 Measures what pebble does to replies. Zero dependencies, standard library only.
 
-> **No results are published yet.** `bench/results/` is empty on purpose. Nothing in this repo estimates or invents savings. If you run it, please share the raw file.
+> Results from one run are in `bench/results/` (see the root README for the table and its limits). Nothing in this repo estimates or invents savings. If you run it, please share the raw file.
 
 ## Run
+
+No API key? If you have the `claude` CLI logged in, use `run_cli.py` (it spends that account's quota). Differences: baseline system prompt is "You are a helpful assistant.", tools and settings are off, and `input_tokens` counts cache reads and writes too.
+
+```bash
+python bench/run_cli.py --runs 3 --workers 8              # same output format as run.py
+```
+
+With an API key:
 
 ```bash
 export ANTHROPIC_API_KEY=...

@@ -2,19 +2,14 @@
 
 Do these in order. Items 1 to 3 matter most.
 
-## 1. Measure first (biggest credibility lever)
+## 1. Strengthen the evidence
 
-Published, honest numbers are what the most successful projects in this niche lead with. Right now the README says "not yet measured", which is honest but not persuasive.
+A first run is published (about 75% output-token cut, risk warning kept on all 7 risk prompts) with its limits. Before launching, make it harder to dismiss:
 
-```bash
-export ANTHROPIC_API_KEY=...
-python bench/run.py --model claude-sonnet-5-5 --runs 3
-python bench/report.py --blind-sheet
-```
-
-Then judge the blind sheet by hand, and replace the "Status: not yet measured" paragraph in both READMEs with the table from `bench/results/latest.md`. **Keep the list of prompts where pebble was longer, and the risk-kept rate, even if they are unflattering.** Commit `bench/results/raw/*.json` so anyone can re-check.
-
-If risk-kept is below 100% on the risk prompts, fix the skill before launching. That is the claim the whole project rests on.
+- Judge the blind sheet by hand: `python bench/report.py --blind-sheet`, then compare. Quality is the first objection you will get.
+- Re-run on another model, and on a few prompts that were **not** used to tune the skill. The published run was tuned on its own prompt set.
+- Decide what to do about `brief`, which currently cuts no more than `plain`: fix it or drop it.
+- Keep the unflattering rows in the README. Credibility here comes from showing them.
 
 ## 2. Repo settings (cannot be set from files)
 

@@ -13,8 +13,13 @@ First release.
 - Generated instruction files for Claude.ai, ChatGPT, Cursor, Gemini CLI, GitHub Copilot and generic `AGENTS.md`.
 - `scripts/lint_skill.py`, a dependency-free `SKILL.md` linter.
 - `scripts/build_ports.py`, which generates `ports/` from the single core skill and fails CI when stale.
-- `bench/`: fixed 24-prompt set, API runner and reporter. No results published yet.
+- `bench/`: fixed 24-prompt set, an API runner, a `claude` CLI runner (no key needed) and a reporter, with one published run.
 - English and Vietnamese READMEs, banner, and demo video.
+
+### Fixed after the first benchmark run
+- Rule 5 asked for a `⚠` line on "a very common mistake", so 49% of replies to non-risk prompts carried a warning. Removed that clause; the rate fell to 13.7%. Both runs are kept in `bench/results/`.
+- Measured input overhead of the core skill is about 870 tokens, not the ~600 the character-count estimate suggested.
+- `brief` mode still does not cut more than `plain` (known, on the roadmap).
 
 ### Changed from the original design
 - Only the core skill auto-loads; the other eight are manual-only, so idle context cost is one short description.

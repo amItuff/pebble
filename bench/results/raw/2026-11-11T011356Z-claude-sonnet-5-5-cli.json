@@ -1,0 +1,2174 @@
+{
+  "model": "claude-sonnet-5-5",
+  "runs": 3,
+  "arms": [
+    "baseline",
+    "plain",
+    "brief"
+  ],
+  "created": "2026-11-11T011356Z",
+  "via": "claude CLI",
+  "prompt_version": 1,
+  "records": [
+    {
+      "prompt_id": "factual-01",
+      "arm": "baseline",
+      "run": 0,
+      "text": "**TCP (Transmission Control Protocol)** and **UDP (User Datagram Protocol)** are the two main transport-layer protocols on the internet.\n\n| | TCP | UDP |\n|---|---|---|\n| **Connection** | Connection-oriented (3-way handshake) | Connectionless |\n| **Reliability** | Guarantees delivery via acknowledgments and retransmission | No guarantee; packets may be lost |\n| **Ordering** | Data arrives in order | No ordering; packets may arrive out of order |\n| **Error checking** | Checksums plus recovery | Checksum only, no recovery |\n| **Flow/congestion control** | Yes | No |\n| **Speed/overhead** | Slower, larger header (20+ bytes) | Faster, small header (8 bytes) |\n| **Data model** | Byte stream | Discrete datagrams (message boundaries preserved) |\n\n**Use TCP when** correctness matters more than latency: web (HTTP/1.1, HTTP/2), email, file transfer, SSH, databases.\n\n**Use UDP when** speed and low latency matter more than perfect delivery, or when you want to handle reliability yourself: DNS, live video/audio, VoIP, online gaming, streaming, and QUIC (which HTTP/3 runs on, building reliability on top of UDP).\n\n**Rule of thumb:** TCP is like a phone call or registered mail, where both sides confirm everything arrives. UDP is like dropping postcards in the mail, which is fast and lightweight, but some may get lost or arrive out of order.",
+      "input_tokens": 1303,
+      "output_tokens": 524,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "baseline",
+      "run": 1,
+      "text": "**TCP (Transmission Control Protocol)** and **UDP (User Datagram Protocol)** are both transport-layer protocols, but they make opposite tradeoffs between reliability and speed.\n\n| Feature | TCP | UDP |\n|---|---|---|\n| **Connection** | Connection-oriented (3-way handshake) | Connectionless |\n| **Reliability** | Guaranteed delivery; lost packets are retransmitted | No guarantees; packets may be lost or duplicated |\n| **Ordering** | Data arrives in order | No ordering; packets may arrive out of order |\n| **Speed / overhead** | Slower, larger header (20+ bytes) | Faster, small header (8 bytes) |\n| **Flow & congestion control** | Yes | No |\n| **Data model** | Byte stream (no message boundaries) | Discrete datagrams (boundaries preserved) |\n| **Error checking** | Checksum plus acknowledgments | Checksum only (optional in IPv4) |\n\n**When to use TCP:** when correctness matters more than latency.\n- Web (HTTP/1.1, HTTP/2, HTTPS)\n- Email (SMTP, IMAP)\n- File transfer (FTP, SFTP)\n- SSH, databases\n\n**When to use UDP:** when speed and low latency matter more than perfect delivery, or when the application handles reliability itself.\n- Live video/audio streaming, VoIP\n- Online gaming\n- DNS lookups\n- DHCP\n- QUIC / HTTP/3 (built on UDP, with reliability implemented on top)\n\n**Rule of thumb:** TCP is like a phone call or registered mail: it sets up a connection and confirms everything arrives in order. UDP is like dropping postcards in a mailbox: it's fast and lightweight, but some may get lost or arrive out of order.",
+      "input_tokens": 1299,
+      "output_tokens": 619,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "baseline",
+      "run": 2,
+      "text": "**TCP (Transmission Control Protocol)** and **UDP (User Datagram Protocol)** are both transport-layer protocols, but they make opposite trade-offs between reliability and speed.\n\n| Feature | TCP | UDP |\n|---|---|---|\n| **Connection** | Connection-oriented (three-way handshake) | Connectionless (just send) |\n| **Reliability** | Guaranteed delivery; lost packets are retransmitted | No guarantees; packets may be lost or duplicated |\n| **Ordering** | Data arrives in order | No ordering; packets may arrive out of order |\n| **Speed / overhead** | Slower, larger header (20+ bytes) | Faster, small header (8 bytes) |\n| **Flow & congestion control** | Yes | No |\n| **Data model** | Byte stream (no message boundaries) | Discrete datagrams (boundaries preserved) |\n| **Error checking** | Checksum plus acknowledgments and retransmission | Checksum only (optional in IPv4) |\n\n## When to use each\n\n**TCP** is best when correctness matters more than latency:\n- Web (HTTP/1.1, HTTP/2), email (SMTP, IMAP), file transfer (FTP, SFTP), SSH, databases\n\n**UDP** is best when low latency matters or occasional loss is acceptable:\n- Live video/audio, VoIP, online gaming, DNS lookups, DHCP, streaming telemetry\n\n## Worth knowing\n\n- **QUIC / HTTP/3** is built on UDP, but implements reliability, ordering, and congestion control itself in user space. This avoids TCP's head-of-line blocking and speeds up connection setup.\n- With UDP, applications that need some reliability must build it themselves (e.g., sequence numbers, retries).\n- UDP supports broadcast and multicast; TCP is strictly point-to-point.\n\n**Rule of thumb:** use TCP when you need every byte, correct and in order; use UDP when fresh data beats complete data.",
+      "input_tokens": 1300,
+      "output_tokens": 673,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "plain",
+      "run": 0,
+      "text": "TCP is connection-oriented and reliable: it guarantees ordered, error-checked delivery with retransmission, while UDP is connectionless and sends packets with no delivery or ordering guarantees, making it faster and lighter. Use TCP for web, email, and file transfer; use UDP for streaming, gaming, VoIP, and DNS.",
+      "input_tokens": 2175,
+      "output_tokens": 115,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "plain",
+      "run": 1,
+      "text": "TCP is connection-based and guarantees ordered, reliable delivery (with retransmission and congestion control), while UDP is connectionless and sends packets with no delivery, ordering, or retry guarantees, making it faster and lighter. Use TCP for web, email, and file transfer; use UDP for real-time traffic like video calls, gaming, and DNS lookups.",
+      "input_tokens": 2169,
+      "output_tokens": 122,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "plain",
+      "run": 2,
+      "text": "TCP is connection-based and reliable: it guarantees ordered, error-checked delivery with retransmission, at the cost of speed. UDP is connectionless and sends packets with no delivery or ordering guarantees, so it's faster and lighter. Use TCP for web, email, and file transfer; use UDP for streaming, gaming, VoIP, and DNS, where speed matters more than perfect delivery.",
+      "input_tokens": 2168,
+      "output_tokens": 135,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "brief",
+      "run": 0,
+      "text": "TCP is connection-based and reliable: it guarantees delivery, order, and error-checking, at the cost of speed. UDP is connectionless and fire-and-forget: no delivery or ordering guarantees, but lower latency and overhead. Use TCP for web, email, and file transfer; use UDP for streaming, gaming, VoIP, and DNS.",
+      "input_tokens": 2182,
+      "output_tokens": 119,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "brief",
+      "run": 1,
+      "text": "TCP is connection-based and reliable: it guarantees ordered, error-checked delivery with retransmission. UDP is connectionless and fast: it sends packets with no delivery, ordering, or retry guarantees. Use TCP for web, email, and file transfer; use UDP for video calls, gaming, and DNS where speed matters more than perfect delivery.",
+      "input_tokens": 2179,
+      "output_tokens": 119,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-01",
+      "arm": "brief",
+      "run": 2,
+      "text": "TCP is connection-based and reliable: it guarantees ordered, error-checked delivery with retransmission. UDP is connectionless and fast, with no delivery, ordering, or retry guarantees. Use TCP for web, email, and file transfer; use UDP for real-time traffic like video calls, gaming, and DNS lookups, where speed matters more than a lost packet.",
+      "input_tokens": 2177,
+      "output_tokens": 124,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "baseline",
+      "run": 0,
+      "text": "**Affect** is correct: \"the weather will affect our plans.\"\n\nHere \"affect\" is a verb meaning \"to influence or change.\" \"Effect\" is usually a noun meaning \"a result\" (e.g., \"the weather had an effect on our plans\").\n\nA quick trick: if you can substitute \"influence,\" use *affect*. If you can substitute \"result,\" use *effect*.\n\n(Less common exception: \"effect\" as a verb means \"to bring about,\" as in \"effect change.\")",
+      "input_tokens": 1314,
+      "output_tokens": 148,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "baseline",
+      "run": 1,
+      "text": "**Affect** is correct: \"The weather will affect our plans.\"\n\nHere, you need a verb meaning \"to influence or change,\" and \"affect\" is usually the verb. \"Effect\" is usually a noun meaning \"result\" (e.g., \"The weather had an effect on our plans\").\n\nA quick tip: **A**ffect = **A**ction (verb), **E**ffect = **E**nd result (noun).",
+      "input_tokens": 1315,
+      "output_tokens": 128,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "baseline",
+      "run": 2,
+      "text": "**Affect** is correct: \"The weather will affect our plans.\"\n\nHere, you need a verb meaning \"to influence or change,\" and *affect* is the verb. *Effect* is usually a noun meaning \"a result\" (e.g., \"The weather had an effect on our plans\").\n\nA quick tip: **A**ffect = **A**ction (verb), **E**ffect = **E**nd result (noun).",
+      "input_tokens": 1317,
+      "output_tokens": 127,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "plain",
+      "run": 0,
+      "text": "**Affect**: here it's a verb meaning \"to influence.\"",
+      "input_tokens": 2190,
+      "output_tokens": 22,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "plain",
+      "run": 1,
+      "text": "\"Affect\": the weather will **affect** our plans.\n\n\"Affect\" is the verb meaning to influence; \"effect\" is usually the noun (the weather's *effect* on our plans).",
+      "input_tokens": 2183,
+      "output_tokens": 60,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "plain",
+      "run": 2,
+      "text": "**Affect**: \"The weather will affect our plans.\" Here it's a verb meaning \"to influence,\" and \"effect\" as a verb means \"to bring about\" (e.g., \"effect change\").",
+      "input_tokens": 2187,
+      "output_tokens": 60,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "brief",
+      "run": 0,
+      "text": "\"Affect\" — it's the verb meaning to influence: \"the weather will affect our plans.\"",
+      "input_tokens": 2195,
+      "output_tokens": 31,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "brief",
+      "run": 1,
+      "text": "**Affect**: here it's a verb meaning \"to influence,\" and \"effect\" as a verb means \"to bring about.\"",
+      "input_tokens": 2192,
+      "output_tokens": 38,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-02",
+      "arm": "brief",
+      "run": 2,
+      "text": "\"Affect\": the weather will affect our plans. Here it's a verb meaning \"to influence.\"",
+      "input_tokens": 2195,
+      "output_tokens": 32,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "baseline",
+      "run": 0,
+      "text": "A kibibyte (KiB) is **1,024 bytes** (2¹⁰), as defined by the IEC binary prefix standard.\n\nThis differs from a kilobyte (kB), which is 1,000 bytes in SI usage.",
+      "input_tokens": 1298,
+      "output_tokens": 78,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "baseline",
+      "run": 1,
+      "text": "A kibibyte (KiB) is **1,024 bytes** (2¹⁰).\n\nIt differs from a kilobyte (kB), which in SI usage is 1,000 bytes.",
+      "input_tokens": 1299,
+      "output_tokens": 62,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "baseline",
+      "run": 2,
+      "text": "A kibibyte (KiB) is **1,024 bytes** (2¹⁰).\n\nIt differs from a kilobyte (kB), which in the SI system is 1,000 bytes.",
+      "input_tokens": 1303,
+      "output_tokens": 62,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "plain",
+      "run": 0,
+      "text": "1024 bytes (2¹⁰), versus 1000 bytes in a kilobyte.",
+      "input_tokens": 2172,
+      "output_tokens": 33,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "plain",
+      "run": 1,
+      "text": "1 KiB = 1,024 bytes (2¹⁰), whereas 1 kB = 1,000 bytes.",
+      "input_tokens": 2172,
+      "output_tokens": 42,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "plain",
+      "run": 2,
+      "text": "1,024 bytes (2^10), whereas a kilobyte (kB) is 1,000 bytes.",
+      "input_tokens": 2173,
+      "output_tokens": 37,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "brief",
+      "run": 0,
+      "text": "1 KiB = 1024 bytes (2^10), versus 1 kB = 1000 bytes.",
+      "input_tokens": 2179,
+      "output_tokens": 36,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "brief",
+      "run": 1,
+      "text": "1024 bytes (2¹⁰), versus 1000 in a kilobyte.",
+      "input_tokens": 2185,
+      "output_tokens": 30,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-03",
+      "arm": "brief",
+      "run": 2,
+      "text": "1,024 bytes (2¹⁰), versus 1,000 for a kilobyte.",
+      "input_tokens": 2180,
+      "output_tokens": 32,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "baseline",
+      "run": 0,
+      "text": "HTTP status **429 Too Many Requests** means the client has sent too many requests in a given time window, so the server is rate limiting it.\n\n**Key details:**\n- It's defined in RFC 6585.\n- The server may include a `Retry-After` header telling you how many seconds to wait (or a date/time) before trying again.\n- Some APIs also send headers like `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` to show your quota and when it resets.\n\n**Common causes:**\n- Exceeding an API's per-user, per-IP, or per-key request quota\n- Aggressive scripts, scrapers, or retry loops\n- Brute-force protection kicking in (e.g., repeated login attempts)\n\n**How to handle it:**\n- Respect `Retry-After` if present.\n- Use exponential backoff with jitter when retrying.\n- Reduce request frequency, batch requests, or cache responses.\n- Check whether your plan or quota can be increased.",
+      "input_tokens": 1305,
+      "output_tokens": 333,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "baseline",
+      "run": 1,
+      "text": "HTTP status **429 Too Many Requests** means the client has sent too many requests in a given period, so the server is rate limiting it.\n\n**Key details:**\n- It's defined in RFC 6585.\n- The server may include a `Retry-After` header telling you how many seconds to wait (or a date after which to retry).\n- Many APIs also send headers such as `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` to show your quota and when it resets.\n\n**Common causes:**\n- Exceeding an API's per-minute, per-hour, or per-day quota\n- Aggressive scraping or polling\n- Retry loops without backoff\n- Many clients sharing one IP or API key\n\n**How to handle it:**\n- Respect the `Retry-After` header if present.\n- Use exponential backoff with jitter when retrying.\n- Reduce request frequency, batch requests, or cache responses.\n- Check whether your plan or quota can be raised.",
+      "input_tokens": 1303,
+      "output_tokens": 325,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "baseline",
+      "run": 2,
+      "text": "HTTP status **429 Too Many Requests** means the client has sent too many requests in a given period, so the server is rate limiting it.\n\n**Key details:**\n- It's a client error (4xx), defined in RFC 6585.\n- The server often includes a `Retry-After` header telling you how many seconds to wait (or a date after which to retry).\n- Some APIs also send headers like `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` to show your quota and when it resets.\n\n**Common causes:**\n- Exceeding an API's per-minute, per-hour, or per-day quota\n- Aggressive scraping or polling\n- Retry loops without backoff\n- Shared IP addresses hitting the same limit\n\n**How to handle it:**\n- Honor the `Retry-After` header if present.\n- Use exponential backoff with jitter on retries.\n- Cache responses and batch requests to reduce call volume.\n- Throttle on the client side to stay under the documented limits.\n- Request a higher quota if your legitimate usage needs it.",
+      "input_tokens": 1303,
+      "output_tokens": 356,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "plain",
+      "run": 0,
+      "text": "429 means \"Too Many Requests\": you've hit a rate limit and should slow down. Check the `Retry-After` header for how long to wait, then retry with exponential backoff.",
+      "input_tokens": 2168,
+      "output_tokens": 58,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "plain",
+      "run": 1,
+      "text": "429 means \"Too Many Requests\": you've hit a rate limit and the server is refusing further requests for now. Wait and retry, using the `Retry-After` header if present, ideally with exponential backoff.",
+      "input_tokens": 2168,
+      "output_tokens": 67,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "plain",
+      "run": 2,
+      "text": "429 means \"Too Many Requests\": you've hit a rate limit and the server is rejecting further requests for now. Check the `Retry-After` header for how long to wait, then retry with exponential backoff.",
+      "input_tokens": 2169,
+      "output_tokens": 66,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "brief",
+      "run": 0,
+      "text": "429 means \"Too Many Requests\": you've hit a rate limit and the server is refusing further requests for now. Wait and retry, honoring the `Retry-After` header if present, ideally with exponential backoff.",
+      "input_tokens": 2180,
+      "output_tokens": 69,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "brief",
+      "run": 1,
+      "text": "429 means \"Too Many Requests\": you've hit a rate limit and should slow down. Check the `Retry-After` header, if present, and retry after that delay, ideally with exponential backoff.",
+      "input_tokens": 2183,
+      "output_tokens": 63,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-04",
+      "arm": "brief",
+      "run": 2,
+      "text": "\"429 Too Many Requests\" means you've hit a rate limit; slow down and retry after the delay given in the `Retry-After` header, ideally with exponential backoff.",
+      "input_tokens": 2178,
+      "output_tokens": 57,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "baseline",
+      "run": 0,
+      "text": "The capital of Australia is **Canberra**.",
+      "input_tokens": 1301,
+      "output_tokens": 17,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "baseline",
+      "run": 1,
+      "text": "The capital of Australia is **Canberra**.",
+      "input_tokens": 1298,
+      "output_tokens": 17,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "baseline",
+      "run": 2,
+      "text": "The capital of Australia is **Canberra**.",
+      "input_tokens": 1296,
+      "output_tokens": 17,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "plain",
+      "run": 0,
+      "text": "Canberra.",
+      "input_tokens": 2168,
+      "output_tokens": 7,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "plain",
+      "run": 1,
+      "text": "Canberra.",
+      "input_tokens": 2164,
+      "output_tokens": 7,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "plain",
+      "run": 2,
+      "text": "Canberra.",
+      "input_tokens": 2166,
+      "output_tokens": 7,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "brief",
+      "run": 0,
+      "text": "Canberra.",
+      "input_tokens": 2175,
+      "output_tokens": 7,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "brief",
+      "run": 1,
+      "text": "Canberra.",
+      "input_tokens": 2177,
+      "output_tokens": 7,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "factual-05",
+      "arm": "brief",
+      "run": 2,
+      "text": "Canberra.",
+      "input_tokens": 2175,
+      "output_tokens": 7,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Run this:\n\n```bash\ngit reset --soft HEAD~1\n```\n\nThis removes the last commit but leaves all of its changes staged, so you can edit them or recommit right away.\n\n**Other options, depending on what you want:**\n\n- **Keep changes unstaged** (in your working directory, not staged):\n  ```bash\n  git reset HEAD~1\n  ```\n  (`--mixed` is the default.)\n\n- **Throw the changes away entirely** (destructive, so be careful):\n  ```bash\n  git reset --hard HEAD~1\n  ```\n\n**Notes:**\n\n- If you've already pushed the commit, resetting rewrites history. Either use `git revert HEAD`, which creates a new commit that undoes it and is safe for shared branches, or reset locally and then `git push --force-with-lease` (only if nobody else is working on that branch).\n- If you reset by mistake, `git reflog` shows the previous HEAD, and you can recover with `git reset --soft <hash>`.\n- To only change the commit message or add forgotten files, use `git commit --amend` instead.",
+      "input_tokens": 1306,
+      "output_tokens": 350,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Run this:\n\n```bash\ngit reset --soft HEAD~1\n```\n\nThis removes the last commit but leaves your changes staged, so you can edit them or recommit right away.\n\n**Other options:**\n\n- `git reset HEAD~1` (same as `--mixed`, the default): undoes the commit and unstages the changes, but keeps them in your working directory.\n- `git reset --hard HEAD~1`: **discards** the commit and the changes. Don't use this if you want to keep your work.\n\n**Notes:**\n\n- If you've already pushed the commit, resetting rewrites history. You'd need to force-push (`git push --force-with-lease`), which can affect collaborators. In that case, `git revert HEAD` is safer, since it creates a new commit that undoes the old one.\n- If you reset by mistake, `git reflog` shows the previous HEAD, and `git reset --soft <hash>` restores it.",
+      "input_tokens": 1304,
+      "output_tokens": 293,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Run:\n\n```bash\ngit reset --soft HEAD~1\n```\n\nThis removes the last commit but leaves all of its changes staged, so you can edit them and recommit.\n\n**Other options:**\n\n- `git reset HEAD~1` (or `--mixed`, the default): undoes the commit and unstages the changes. They stay in your working directory.\n- `git reset --hard HEAD~1`: **discards** the changes entirely. Don't use this if you want to keep your work.\n\n**Notes:**\n\n- If you've already pushed the commit, resetting rewrites history. You'd need `git push --force-with-lease` afterward, which can disrupt collaborators. In that case, `git revert HEAD` is safer because it creates a new commit that undoes the old one.\n- If you only want to fix the commit message or add forgotten files, use `git commit --amend` instead.\n- If you reset by mistake, `git reflog` shows the previous commit hash, and you can recover with `git reset --soft <hash>`.\n\nThe current directory (`/tmp`) isn't a git repository, so run this in your project's directory.",
+      "input_tokens": 1307,
+      "output_tokens": 353,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "plain",
+      "run": 0,
+      "text": "`git reset --soft HEAD~1` undoes the commit and leaves your changes staged. Use `git reset HEAD~1` (mixed, the default) if you want them unstaged but still in your files.\n\n⚠ If the commit was already pushed, don't rewrite it with a reset unless you're the only one using the branch; otherwise use `git revert HEAD`.",
+      "input_tokens": 2175,
+      "output_tokens": 120,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "plain",
+      "run": 1,
+      "text": "`git reset --soft HEAD~1` undoes the commit and leaves your changes staged. Use `git reset HEAD~1` (mixed) if you'd rather have them unstaged.\n\n⚠ If the commit was already pushed, resetting rewrites history and will need a force-push that can disrupt teammates.",
+      "input_tokens": 2176,
+      "output_tokens": 103,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "plain",
+      "run": 2,
+      "text": "`git reset --soft HEAD~1` undoes the commit and leaves your changes staged. Use `git reset HEAD~1` instead if you want them unstaged.\n\n⚠ If the commit is already pushed, resetting means force-pushing, which rewrites history for anyone who pulled it; use `git revert HEAD` instead on shared branches.",
+      "input_tokens": 2174,
+      "output_tokens": 305,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "brief",
+      "run": 0,
+      "text": "`git reset --soft HEAD~1` undoes the commit and leaves your changes staged. Use `git reset HEAD~1` (mixed) instead if you want them unstaged.\n\n⚠ Only do this on commits you haven't pushed; if already pushed, rewriting history will require a force-push and can disrupt others.",
+      "input_tokens": 2183,
+      "output_tokens": 106,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "brief",
+      "run": 1,
+      "text": "Run `git reset --soft HEAD~1`, which removes the commit and leaves your changes staged. To leave them unstaged instead, use `git reset --mixed HEAD~1`.\n\nIf you've already pushed the commit, don't reset it; use `git revert HEAD` instead so you don't rewrite shared history.",
+      "input_tokens": 2182,
+      "output_tokens": 216,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-01",
+      "arm": "brief",
+      "run": 2,
+      "text": "Run `git reset --soft HEAD~1`, which removes the commit and leaves your changes staged. To leave them unstaged instead, use `git reset HEAD~1`.\n\n⚠ If the commit is already pushed, fixing the remote needs a force-push that rewrites shared history; use `git revert HEAD` instead on shared branches.",
+      "input_tokens": 2183,
+      "output_tokens": 223,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "baseline",
+      "run": 0,
+      "text": "The most common modern approach is **Flexbox**:\n\n```css\n.parent {\n  display: flex;\n  justify-content: center; /* horizontal */\n  align-items: center;     /* vertical */\n  min-height: 100vh;       /* parent needs a height */\n}\n```\n\n```html\n<div class=\"parent\">\n  <div class=\"child\">Centered</div>\n</div>\n```\n\n## Alternatives\n\n**CSS Grid** (shortest):\n```css\n.parent {\n  display: grid;\n  place-items: center;\n  min-height: 100vh;\n}\n```\n\n**Absolute positioning with transform** (useful for overlays or when the parent is `position: relative`):\n```css\n.parent {\n  position: relative;\n  height: 100vh;\n}\n.child {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n```\n\n**Absolute positioning with `inset` and `margin: auto`** (requires a set width and height on the child):\n```css\n.child {\n  position: absolute;\n  inset: 0;\n  width: 200px;\n  height: 100px;\n  margin: auto;\n}\n```\n\n## Notes\n- The parent must have a defined height (e.g. `100vh`, or a fixed height), otherwise there's no extra space to center within.\n- To center only horizontally, a block element with a set width can use `margin: 0 auto;`.\n- For most cases, I'd recommend Grid with `place-items: center` or Flexbox, since both are simple and well supported.",
+      "input_tokens": 1312,
+      "output_tokens": 492,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "baseline",
+      "run": 1,
+      "text": "The most common approach is flexbox or grid.\n\n## Flexbox\n\n```css\n.parent {\n  display: flex;\n  justify-content: center; /* horizontal */\n  align-items: center;     /* vertical */\n  min-height: 100vh;       /* parent needs a height */\n}\n```\n\n## Grid (shortest)\n\n```css\n.parent {\n  display: grid;\n  place-items: center;\n  min-height: 100vh;\n}\n```\n\n## Absolute positioning\n\nUseful when you want to center relative to a positioned ancestor:\n\n```css\n.parent {\n  position: relative;\n  height: 100vh;\n}\n\n.child {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n```\n\n## Margin auto in a flex container\n\n```css\n.parent {\n  display: flex;\n  min-height: 100vh;\n}\n\n.child {\n  margin: auto;\n}\n```\n\n## Notes\n\n- The parent must have a height (e.g. `100vh` or a fixed value), otherwise there is no extra space to center within.\n- For centering within the whole page, use `min-height: 100vh` on the parent (or `body`).\n- Grid with `place-items: center` is generally the most concise option today. Flexbox is equally well supported and more familiar to many developers.",
+      "input_tokens": 1306,
+      "output_tokens": 423,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "baseline",
+      "run": 2,
+      "text": "The simplest modern way is flexbox or grid.\n\n## Option 1: Grid (shortest)\n\n```css\n.parent {\n  display: grid;\n  place-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```\n\n```html\n<div class=\"parent\">\n  <div class=\"child\">Centered</div>\n</div>\n```\n\n## Option 2: Flexbox\n\n```css\n.parent {\n  display: flex;\n  justify-content: center; /* horizontal */\n  align-items: center;     /* vertical */\n  min-height: 100vh;\n}\n```\n\n## Option 3: Absolute positioning\n\nUseful when the element should be taken out of the normal flow, such as for modals.\n\n```css\n.parent {\n  position: relative;\n  height: 100vh;\n}\n\n.child {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n```\n\n## Option 4: Margin auto (with a fixed size)\n\n```css\n.parent {\n  position: relative;\n  height: 100vh;\n}\n\n.child {\n  position: absolute;\n  inset: 0;\n  width: 200px;\n  height: 100px;\n  margin: auto;\n}\n```\n\n## Notes\n\n- The parent must have a height, or there is no extra space to center within. `min-height: 100vh` makes it fill the viewport.\n- To center on the whole page, apply the grid or flex rules to `body` (or a full-height wrapper).\n- For text alone, `text-align: center` handles horizontal centering. It doesn't affect vertical centering.\n\nI'd recommend Option 1 for most cases, since it needs only three lines and is well supported in all modern browsers.",
+      "input_tokens": 1305,
+      "output_tokens": 546,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "plain",
+      "run": 0,
+      "text": "Use grid on the parent:\n\n```css\n.parent {\n  display: grid;\n  place-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```",
+      "input_tokens": 2174,
+      "output_tokens": 58,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "plain",
+      "run": 1,
+      "text": "Use flexbox on the parent (or grid, which is shorter):\n\n```css\n.parent {\n  display: grid;\n  place-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```\n\nThe parent must have a defined height, or there is no space to center within.",
+      "input_tokens": 2177,
+      "output_tokens": 90,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "plain",
+      "run": 2,
+      "text": "Use flexbox on the parent:\n\n```css\n.parent {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```\n\nOr the shorter grid version: `display: grid; place-items: center; min-height: 100vh;`",
+      "input_tokens": 2176,
+      "output_tokens": 102,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "brief",
+      "run": 0,
+      "text": "Use flexbox on the parent:\n\n```css\n.parent {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```\n\nOr the shorter grid version: `display: grid; place-items: center;` on the parent.",
+      "input_tokens": 2185,
+      "output_tokens": 98,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "brief",
+      "run": 1,
+      "text": "Use flexbox on the parent:\n\n```css\n.parent {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```\n\nOr the shorter grid version: `.parent { display: grid; place-items: center; min-height: 100vh; }`",
+      "input_tokens": 2183,
+      "output_tokens": 107,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-02",
+      "arm": "brief",
+      "run": 2,
+      "text": "Use flexbox on the parent (or grid, which is shorter):\n\n```css\n.parent {\n  display: grid;\n  place-items: center;\n  min-height: 100vh; /* parent needs a height */\n}\n```\n\nFlexbox equivalent:\n\n```css\n.parent {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100vh;\n}\n```",
+      "input_tokens": 2185,
+      "output_tokens": 128,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Use `int()` on each element, via `map()` or a list comprehension:\n\n```python\nstrings = [\"1\", \"2\", \"3\"]\n\n# List comprehension (most common)\nnumbers = [int(s) for s in strings]\n\n# map() alternative\nnumbers = list(map(int, strings))\n\nprint(numbers)  # [1, 2, 3]\n```\n\n**Handling invalid input**\n\n`int()` raises `ValueError` if a string isn't a valid integer. To skip bad values:\n\n```python\nstrings = [\"1\", \"2\", \"abc\", \"4\"]\n\nnumbers = []\nfor s in strings:\n    try:\n        numbers.append(int(s))\n    except ValueError:\n        pass  # or log/handle the bad value\n\nprint(numbers)  # [1, 2, 4]\n```\n\n**Other useful cases**\n\n- Whitespace is fine: `int(\" 42 \")` → `42`\n- Floats as strings need two steps: `int(float(\"3.7\"))` → `3` (`int(\"3.7\")` raises an error)\n- Different base: `int(\"ff\", 16)` → `255`\n- Negative numbers work: `int(\"-5\")` → `-5`",
+      "input_tokens": 1302,
+      "output_tokens": 365,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Use `int()` with `map()` or a list comprehension:\n\n```python\nstrings = [\"1\", \"2\", \"3\"]\n\n# List comprehension (most common)\nnumbers = [int(s) for s in strings]\n\n# map()\nnumbers = list(map(int, strings))\n\nprint(numbers)  # [1, 2, 3]\n```\n\n**Handling invalid values**\n\n`int()` raises `ValueError` if a string isn't a valid integer. To skip or handle bad input:\n\n```python\nstrings = [\"1\", \"2\", \"abc\", \"4\"]\n\nnumbers = []\nfor s in strings:\n    try:\n        numbers.append(int(s))\n    except ValueError:\n        pass  # or log/handle the error\n\nprint(numbers)  # [1, 2, 4]\n```\n\n**Other useful cases**\n\n- Whitespace is fine: `int(\" 42 \")` → `42`\n- Floats as strings need two steps: `int(float(\"3.7\"))` → `3` (`int(\"3.7\")` raises an error)\n- Other bases: `int(\"ff\", 16)` → `255`\n- Negative numbers work: `int(\"-5\")` → `-5`",
+      "input_tokens": 1307,
+      "output_tokens": 360,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Use `int()` on each element, either with a list comprehension or `map()`:\n\n```python\nstrings = [\"1\", \"2\", \"3\"]\n\n# List comprehension (most common)\nnumbers = [int(s) for s in strings]\n\n# Or with map()\nnumbers = list(map(int, strings))\n\nprint(numbers)  # [1, 2, 3]\n```\n\n**Handling bad input**\n\n`int()` raises `ValueError` if a string isn't a valid integer. If your data might contain bad values, handle them:\n\n```python\nstrings = [\"1\", \"2\", \"abc\", \"4\"]\n\nnumbers = []\nfor s in strings:\n    try:\n        numbers.append(int(s))\n    except ValueError:\n        pass  # or log it, or append a default value\n```\n\nOr as a reusable helper:\n\n```python\ndef to_int(s, default=None):\n    try:\n        return int(s)\n    except ValueError:\n        return default\n\nnumbers = [n for n in (to_int(s) for s in strings) if n is not None]\n```\n\n**Other useful cases**\n\n- Whitespace is fine: `int(\" 42 \")` → `42`\n- Floats as strings need two steps: `int(float(\"3.7\"))` → `3` (since `int(\"3.7\")` raises an error)\n- Different bases: `int(\"ff\", 16)` → `255`, `int(\"1010\", 2)` → `10`\n- Underscores are allowed: `int(\"1_000\")` → `1000`",
+      "input_tokens": 1305,
+      "output_tokens": 453,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "plain",
+      "run": 0,
+      "text": "Use `list(map(int, strings))` or `[int(s) for s in strings]`.\n\n```python\nstrings = [\"1\", \"2\", \"3\"]\nnumbers = [int(s) for s in strings]  # [1, 2, 3]\n```\n\n`int()` raises `ValueError` on non-numeric strings like `\"abc\"` or `\"1.5\"`, so clean or filter the input first if it might be messy.",
+      "input_tokens": 2173,
+      "output_tokens": 130,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "plain",
+      "run": 1,
+      "text": "```python\nnums = [int(s) for s in strings]\n```\n\nEquivalent: `list(map(int, strings))`. Invalid items like `\"abc\"` raise `ValueError`.",
+      "input_tokens": 2174,
+      "output_tokens": 61,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "plain",
+      "run": 2,
+      "text": "```python\nnums = [int(s) for s in strings]\n```\n\nOr `list(map(int, strings))`. Invalid items like `\"abc\"` or `\"3.5\"` raise `ValueError`; strip whitespace is handled automatically by `int`.",
+      "input_tokens": 2174,
+      "output_tokens": 82,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "brief",
+      "run": 0,
+      "text": "Use `list(map(int, strings))` or `[int(s) for s in strings]`.\n\n```python\nstrings = [\"1\", \"2\", \"3\"]\nnumbers = [int(s) for s in strings]  # [1, 2, 3]\n```\n\n`int()` raises `ValueError` on non-numeric strings like `\"abc\"` or `\"1.5\"`; whitespace like `\" 4 \"` is fine.",
+      "input_tokens": 2181,
+      "output_tokens": 130,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "brief",
+      "run": 1,
+      "text": "Use `list(map(int, strings))` or a list comprehension: `ints = [int(s) for s in strings]`.\n\nExample: `[\"1\", \"2\", \"3\"]` becomes `[1, 2, 3]`.\n\n⚠ `int()` raises `ValueError` on non-numeric strings like `\"abc\"` or `\"1.5\"`, so validate or wrap it in `try/except` if the input is untrusted.",
+      "input_tokens": 2182,
+      "output_tokens": 135,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-03",
+      "arm": "brief",
+      "run": 2,
+      "text": "```python\nstrings = [\"1\", \"2\", \"3\"]\nints = [int(s) for s in strings]  # or: list(map(int, strings))\n```\n\n`int()` raises `ValueError` on non-numeric strings like `\"abc\"` or `\"1.5\"`, so clean or filter the input first if it might contain them. Whitespace like `\" 4 \"` is fine.",
+      "input_tokens": 2181,
+      "output_tokens": 220,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Use `lsof` in Terminal:\n\n```bash\nlsof -i :3000\n```\n\nThis lists the process(es) using port 3000, including the command name, PID, and user.\n\n**Only show listening processes:**\n```bash\nlsof -nP -iTCP:3000 -sTCP:LISTEN\n```\n(`-n` and `-P` skip DNS and port-name lookups, which makes it faster and the output clearer.)\n\n**Get just the PID:**\n```bash\nlsof -ti :3000\n```\n\n**Kill the process:**\n```bash\nkill $(lsof -ti :3000)\n```\nIf it doesn't exit, use `kill -9 $(lsof -ti :3000)`.\n\n**Alternative using `netstat`** (less detailed on macOS, since it doesn't show the PID):\n```bash\nnetstat -an | grep 3000\n```\n\nIf the process is owned by another user or by the system, prefix `lsof` with `sudo` to see it.",
+      "input_tokens": 1308,
+      "output_tokens": 310,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Use `lsof` in Terminal:\n\n```bash\nlsof -i :3000\n```\n\nThis lists the process (command, PID, user) listening on or connected to port 3000.\n\n**Only the listening process:**\n```bash\nlsof -nP -iTCP:3000 -sTCP:LISTEN\n```\n`-n` and `-P` skip DNS and port-name lookups, which makes it faster and the output clearer.\n\n**Get just the PID:**\n```bash\nlsof -ti :3000\n```\n\n**Kill it if needed:**\n```bash\nkill $(lsof -ti :3000)\n# or, if it won't die:\nkill -9 $(lsof -ti :3000)\n```\n\n**If you don't see your process,** try with `sudo`, since processes owned by other users may not show otherwise:\n```bash\nsudo lsof -i :3000\n```\n\n**Alternative using `netstat`** (doesn't show the process name on macOS, but confirms the port is in use):\n```bash\nnetstat -an | grep 3000\n```\n\nNote: on newer macOS versions, AirPlay Receiver uses ports 5000 and 7000, not 3000, so if you see a surprising process there, it's likely a dev server, Docker, or a leftover Node process.",
+      "input_tokens": 1309,
+      "output_tokens": 402,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Use `lsof` in Terminal:\n\n```bash\nlsof -i :3000\n```\n\nTo show only listening processes and skip DNS lookups:\n\n```bash\nlsof -nP -iTCP:3000 -sTCP:LISTEN\n```\n\nThe output includes the command name, the **PID**, and the user. To get just the PID:\n\n```bash\nlsof -ti :3000\n```\n\n**Kill it if needed:**\n\n```bash\nkill $(lsof -ti :3000)\n# or, if it won't die:\nkill -9 $(lsof -ti :3000)\n```\n\n**Notes:**\n- If the process belongs to another user, prefix with `sudo`.\n- Alternative using `netstat`: `netstat -anv | grep 3000` (the PID is in one of the columns).\n- If nothing is returned, no process is listening on that port. It may be bound on a different interface, or the app may have already exited.",
+      "input_tokens": 1307,
+      "output_tokens": 290,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "plain",
+      "run": 0,
+      "text": "```\nlsof -i :3000\n```\n\nAdd `-sTCP:LISTEN` to show only the listening process. To stop it, use `kill <PID>` with the PID from the output.",
+      "input_tokens": 2174,
+      "output_tokens": 60,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "plain",
+      "run": 1,
+      "text": "```\nlsof -i :3000\n```\n\nAdd `-sTCP:LISTEN` to show only the listening process. To stop it, use `kill <PID>` with the PID from the output.",
+      "input_tokens": 2174,
+      "output_tokens": 60,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "plain",
+      "run": 2,
+      "text": "`lsof -nP -iTCP:3000 -sTCP:LISTEN` shows the process and its PID.\n\nTo stop it: `kill <PID>` (use `kill -9 <PID>` only if it ignores that).",
+      "input_tokens": 2172,
+      "output_tokens": 74,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "brief",
+      "run": 0,
+      "text": "Run `lsof -i :3000` to see the process and its PID.\n\nTo stop it: `kill <PID>` (use `kill -9 <PID>` only if it won't exit).\n\n⚠ `kill -9` skips cleanup, so the process can lose unsaved data or leave corrupted files.",
+      "input_tokens": 2185,
+      "output_tokens": 96,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "brief",
+      "run": 1,
+      "text": "```bash\nlsof -nP -iTCP:3000 -sTCP:LISTEN\n```\n\nThe PID is in the second column. To free the port, run `kill <PID>`, or `kill -9 <PID>` if it won't exit.",
+      "input_tokens": 2189,
+      "output_tokens": 181,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "howto-04",
+      "arm": "brief",
+      "run": 2,
+      "text": "Run `lsof -i :3000`, which shows the process name and PID. To kill it, use `kill <PID>`.",
+      "input_tokens": 2188,
+      "output_tokens": 40,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "baseline",
+      "run": 0,
+      "text": "**Short answer: learn React first**, unless you have a specific reason to pick Vue.\n\n**Why React:**\n- **Job market:** React has far more job listings and a larger ecosystem, so it's the safer career bet.\n- **Transferable skills:** React's component model, hooks, and JSX-style thinking carry over to React Native, Next.js, and other tools. Concepts also map easily to Vue later.\n- **Resources:** More tutorials, libraries, and community answers.\n\n**Why Vue might be better for you:**\n- **Gentler learning curve:** Single-file components (HTML/CSS/JS together in a familiar layout) and clear conventions make it easier for beginners.\n- **Less decision fatigue:** Official routing and state management (Vue Router, Pinia) mean fewer choices to make.\n- **Great docs:** Vue's documentation is excellent.\n\n**How to decide:**\n| Your situation | Pick |\n|---|---|\n| Want the most job opportunities | React |\n| Total beginner to JS frameworks, want an easy start | Vue |\n| Already know HTML/CSS/JS well and want to be employable | React |\n| Joining a team or company that uses one | Whichever they use |\n| Building a personal project quickly | Vue |\n\n**Practical advice:**\n1. Make sure you're comfortable with modern JavaScript (ES6+, async/await, array methods) first. That matters more than the framework choice.\n2. Pick one and build 2–3 real projects. Don't spend weeks deliberating.\n3. Once you know one, picking up the other takes a few days to a couple of weeks.\n\nIf you tell me your background and goals (job hunting, hobby project, freelance, etc.), I can give a more tailored recommendation.",
+      "input_tokens": 1303,
+      "output_tokens": 571,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "baseline",
+      "run": 1,
+      "text": "**Start with React** for most people, unless one of the exceptions below applies.\n\n**Why React first:**\n- **Job market:** React has far more job listings and a larger ecosystem (Next.js, React Native, a huge library selection).\n- **Transferable skills:** React's core ideas (components, props, state, hooks, unidirectional data flow) carry over to almost every other framework, including Vue.\n- **Resources:** More tutorials, courses, Stack Overflow answers, and community support.\n\n**Why Vue might be better for you:**\n- **Gentler learning curve:** Single-file components with HTML, JS, and CSS in one place feel natural if you're coming from plain HTML/CSS/JS.\n- **Opinionated and cohesive:** Official router and state management (Vue Router, Pinia) mean fewer decisions to make.\n- **Great docs:** Vue's documentation is widely regarded as excellent for beginners.\n\n**How to decide:**\n| Your situation | Pick |\n|---|---|\n| Want a job ASAP, especially in the US/startups | React |\n| Interested in mobile (React Native) | React |\n| Beginner who gets overwhelmed by choices | Vue |\n| Joining a team or company that already uses one | Whatever they use |\n| Building personal projects, want fast, pleasant DX | Either |\n\n**Bottom line:** Both are great, and the differences matter less than you'd think. Once you know one, picking up the other takes a few weeks. Don't spend more than a day deciding. Pick one, build a real project with it, and go from there.\n\nIf you tell me your background and goals (job hunting, side project, existing JS experience), I can give a more tailored recommendation.",
+      "input_tokens": 1301,
+      "output_tokens": 551,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "baseline",
+      "run": 2,
+      "text": "**Short answer: learn React first**, unless you have a specific reason to pick Vue.\n\n**Why React:**\n- **Job market:** far more job postings, especially in the US and at larger companies.\n- **Ecosystem:** the most libraries, tutorials, and community answers. Frameworks like Next.js and Remix build on it.\n- **Transferable skills:** React Native for mobile, and the concepts (components, hooks, unidirectional data flow) carry over to other frameworks.\n- **AI tooling support:** most code generators and examples default to React.\n\n**Why you might choose Vue instead:**\n- **Gentler learning curve:** single-file components (HTML/CSS/JS together) and clear documentation make it easier for beginners.\n- **Closer to plain HTML/CSS/JS:** templates feel familiar if you're coming from traditional web development.\n- **Cohesive official tooling:** Vue Router and Pinia are officially maintained, so there are fewer choices to agonize over.\n- **Strong regional markets:** popular in parts of Europe and Asia, and common in agencies and smaller teams.\n\n**How to decide:**\n| Your situation | Pick |\n|---|---|\n| Want maximum job opportunities | React |\n| Total beginner, want a smoother start | Vue |\n| Already know a team/company using one | That one |\n| Want to build mobile apps later | React |\n\n**Important caveat:** the two are more similar than different. Once you learn one well, picking up the other takes a few weeks. Don't spend more than a day deciding. Make sure you're solid on JavaScript fundamentals (ES6+, async/await, array methods) first, since that matters more than the framework choice.\n\nIf you tell me your goals (job hunting, side project, freelancing) and your current experience, I can give a more tailored recommendation.",
+      "input_tokens": 1301,
+      "output_tokens": 594,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "plain",
+      "run": 0,
+      "text": "React. It has the largest job market and ecosystem, and the concepts (components, state, hooks) transfer to Vue and most other frameworks later.",
+      "input_tokens": 2169,
+      "output_tokens": 48,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "plain",
+      "run": 1,
+      "text": "React. It has the largest job market and ecosystem, and the concepts you learn (components, state, hooks) transfer directly to Vue later.",
+      "input_tokens": 2168,
+      "output_tokens": 46,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "plain",
+      "run": 2,
+      "text": "React. It has the largest job market and ecosystem, and the skills carry over to React Native and Next.js.\n\nIf you're not job-hunting and just want the gentlest learning curve, Vue is fine, but React is the safer default.",
+      "input_tokens": 2166,
+      "output_tokens": 73,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "brief",
+      "run": 0,
+      "text": "React. It has far more jobs, libraries, and learning resources, and the skills transfer easily to Vue later if you want it.",
+      "input_tokens": 2174,
+      "output_tokens": 41,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "brief",
+      "run": 1,
+      "text": "React. It has far more jobs, libraries, and learning resources, and its concepts carry over to other frameworks, including Vue.\n\nIf you're not job-hunting and just want the gentlest start, Vue is easier to pick up.",
+      "input_tokens": 2175,
+      "output_tokens": 73,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-01",
+      "arm": "brief",
+      "run": 2,
+      "text": "React, because it has the larger job market and ecosystem, and its concepts (components, state, hooks) transfer to Vue and most other frameworks. If you only want the gentlest learning curve for a personal project, Vue is fine.",
+      "input_tokens": 2177,
+      "output_tokens": 74,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Often yes, but mostly for comfort and habit rather than proven health gains.\n\n**What the evidence says**\n- Standing desks reduce sitting time, typically by 30-80 minutes a day.\n- Benefits for back pain and general discomfort are modest but real for many people.\n- Claims about weight loss or major cardiovascular benefits are weak. Standing burns only about 8-10 extra calories per hour.\n- Standing all day isn't better than sitting all day. It can cause foot, leg, and lower-back fatigue. Alternating is what works.\n\n**Worth it if you:**\n- Work at a desk 6+ hours a day\n- Get stiff or achy from long sitting\n- Want an easy prompt to change posture through the day\n- Will actually use it (many people stop after a few weeks)\n\n**Probably skip it if you:**\n- Already move around a lot during work\n- Have a tight budget and a decent chair. A $30 desktop riser or just taking walking breaks gets you most of the benefit.\n- Tend to buy gear and then not use it\n\n**Buying tips**\n- Electric height-adjustable desks with memory presets are the ones people keep using. Manual cranks tend to get left in one position.\n- Budget $250-500 for something stable. Cheap ones wobble at standing height.\n- Get an anti-fatigue mat and supportive shoes if you stand for long stretches.\n- Try a rough schedule, like 20-30 minutes standing per hour, rather than aiming for long standing blocks.\n\n**Cheaper test first:** stack boxes or books on your current desk for a week or two. If you find yourself using it, the upgrade is probably worth it.\n\nIf you tell me your budget, work setup, and any back or posture issues, I can give a more specific recommendation.",
+      "input_tokens": 1302,
+      "output_tokens": 576,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "baseline",
+      "run": 1,
+      "text": "It depends on how you work, but for many people it's worth it, with some caveats.\n\n**Where it helps**\n- **Less sitting.** Alternating positions breaks up long static periods, which can ease back stiffness and fatigue.\n- **Energy and focus.** Many people report feeling more alert, especially in the afternoon, though the research here is modest.\n- **Flexibility.** Different postures suit different tasks, such as calls, reading, or focused typing.\n\n**Where it falls short**\n- **It's not a health cure.** Standing still for hours isn't much better than sitting. The benefit comes from changing position and moving throughout the day.\n- **Novelty fades.** A lot of people stand for a few weeks and then leave the desk in one position permanently.\n- **Standing too long causes problems of its own**, like sore feet, legs, or lower back.\n\n**Who benefits most**\n- People who sit 6+ hours a day\n- People with back or hip stiffness from prolonged sitting\n- People who will actually change position regularly\n\n**Who might skip it**\n- If you won't use the standing function, a good chair and regular breaks give you most of the benefit.\n- If budget is tight, a $30-50 desktop riser or a stack of sturdy boxes on your existing desk is a cheap way to test whether you like standing.\n\n**Buying tips**\n- Choose a **dual-motor** frame for stability, especially if you use a large monitor.\n- Look for **memory presets** so switching is one button press.\n- Get an **anti-fatigue mat** and supportive shoes if you plan to stand for long stretches.\n- Check the **height range** to make sure it fits you both seated and standing.\n- Reputable options run roughly $300-600, and cheaper ones often wobble.\n\n**My suggestion:** try a riser or improvised setup for a couple of weeks first. If you keep using it, a full standing desk is a good investment. If not, you've saved a few hundred dollars.\n\nDo you work from home or in an office, and how many hours a day are you at the desk? I can give more specific advice with that.",
+      "input_tokens": 1302,
+      "output_tokens": 668,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Often yes, but mostly for the ability to change positions, not for any big health payoff.\n\n**What the evidence says**\n- Standing desks reduce sitting time by roughly 1 to 2 hours a day. That's real but modest.\n- Standing burns only slightly more calories than sitting, so it's not a weight-loss tool.\n- Studies show mixed but mildly positive effects on back discomfort. Some people get noticeable relief, others none.\n- Standing all day isn't better than sitting all day. It can cause foot, leg, and lower-back fatigue. Alternating is the point.\n- The real health lever is movement. Regular breaks and walking matter more than the desk itself.\n\n**When it's worth it**\n- You work at a desk 6+ hours a day.\n- You get stiff or sore from long sitting stretches.\n- You'll actually use it. Many people stop after a few weeks, so be honest with yourself.\n- You work from home and can set it up properly.\n\n**When to skip it**\n- A cheaper fix, like a timer to get up every 30 to 45 minutes, would work for you.\n- Your workspace is shared or space is tight.\n- You'd rather spend the money on a good chair, which often matters more for comfort.\n\n**Buying tips**\n- Get an electric, height-adjustable one with memory presets. Presets make you far more likely to switch.\n- Check the lowest and highest heights against your own body. Taller and shorter people often get caught out.\n- Look for stability at standing height, since wobble is the most common complaint.\n- Budget roughly $250 to $500 for a solid one. Desktop converters ($80 to $200) are a cheap way to try it first.\n- Add an anti-fatigue mat and wear supportive shoes.\n\n**Practical approach**\nTry a converter or stack a box on your desk for a week or two. If you like standing for part of the day, buy a proper desk. If not, you've saved a few hundred dollars.\n\nIf you tell me your budget, how long you work at a desk, and any back or posture issues, I can give more specific advice.",
+      "input_tokens": 1298,
+      "output_tokens": 665,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "plain",
+      "run": 0,
+      "text": "Yes, if you sit most of the day and can afford a sturdy one (~$300-500): it's worth it mainly because it lets you change posture, not because standing is healthier by itself. Skip it if you'd rarely raise it. A cheaper test is stacking boxes on your current desk for a week.",
+      "input_tokens": 2170,
+      "output_tokens": 97,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "plain",
+      "run": 1,
+      "text": "Yes, if you sit more than about 6 hours a day and will actually switch positions; otherwise it ends up as an expensive fixed desk. Evidence for health benefits is modest, but changing posture often helps comfort and focus. A sturdy electric model with a memory preset is the one to get, and you can test the habit first by stacking a box on your current desk.",
+      "input_tokens": 2170,
+      "output_tokens": 116,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "plain",
+      "run": 2,
+      "text": "Yes, if you sit most of the day: it makes it easy to change posture, and that helps comfort even though the evidence for health benefits is modest. Buy an adjustable one only if you'll actually stand for part of the day; otherwise a good chair is the better spend.",
+      "input_tokens": 2172,
+      "output_tokens": 86,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "brief",
+      "run": 0,
+      "text": "Yes, if you sit most of the day and will actually change position every 30-60 minutes. The benefit comes from the movement, not the desk, and many people end up leaving it in one position. Buy a mid-range electric model with a memory-preset button, which makes switching easy enough to become a habit.",
+      "input_tokens": 2176,
+      "output_tokens": 226,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "brief",
+      "run": 1,
+      "text": "Yes, if you sit most of the day and will actually alternate positions; the benefit comes from changing posture, not from standing itself. Try raising your current desk with a box or a cheap tabletop riser for a week first to see if you'll use it.",
+      "input_tokens": 2180,
+      "output_tokens": 78,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-02",
+      "arm": "brief",
+      "run": 2,
+      "text": "Yes, if you sit most of the day and will actually alternate positions; a decent electric model (~$250-500) is worth it, but evidence for direct health benefits is modest, and many people end up leaving them in one position.\n\nCheaper test: put a riser on your current desk for a few weeks and see if you use it.",
+      "input_tokens": 2180,
+      "output_tokens": 100,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "baseline",
+      "run": 0,
+      "text": "**Use PostgreSQL.** For a booking app it's the better default.\n\n**Why Postgres fits bookings:**\n- **Transactions and consistency:** Preventing double-booking is the core problem. Postgres gives you ACID transactions and row-level locking, so two people can't grab the same slot.\n- **Built-in overlap protection:** Exclusion constraints with range types (`tstzrange` plus `EXCLUDE USING gist`) let the database itself reject overlapping bookings for the same resource. This is hard to replicate reliably in MongoDB.\n- **Relational data:** Users, resources, bookings, payments, and staff are naturally related. Joins and foreign keys keep the data clean.\n- **Reporting:** Queries like \"bookings per week by service\" or \"revenue by customer\" are easy in SQL.\n- **Flexibility when you need it:** `JSONB` columns handle semi-structured data (custom fields, metadata) without giving up relational guarantees.\n\n**When MongoDB might make sense:**\n- Your data is highly variable in shape and you rarely query across entities.\n- You're already deeply invested in the Mongo ecosystem and the team knows it well.\n- You expect massive horizontal write scale (unlikely for a small app).\n\n**Practical tips:**\n- Use managed hosting (Neon, Supabase, RDS, etc.) to skip ops work.\n- Store timestamps as `timestamptz` and keep everything in UTC.\n- Enforce no-overlap rules with a database constraint, not just application code.\n\nA minimal example of the overlap rule:\n\n```sql\nCREATE EXTENSION IF NOT EXISTS btree_gist;\n\nCREATE TABLE bookings (\n  id          bigserial PRIMARY KEY,\n  resource_id bigint NOT NULL,\n  user_id     bigint NOT NULL,\n  during      tstzrange NOT NULL,\n  EXCLUDE USING gist (resource_id WITH =, during WITH &&)\n);\n```\n\nIf you tell me your stack and what's being booked (rooms, appointments, classes), I can suggest a fuller schema.",
+      "input_tokens": 1311,
+      "output_tokens": 704,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "baseline",
+      "run": 1,
+      "text": "**Use PostgreSQL.** For a booking app it's the better default.\n\n**Why Postgres fits bookings**\n- **Relational data**: users, resources (rooms, staff, services), bookings, and payments are naturally linked. Foreign keys keep them consistent.\n- **Transactions**: preventing double-booking is the core problem. Postgres gives you ACID transactions and row locking (`SELECT ... FOR UPDATE`).\n- **Overlap constraints**: with a `tstzrange` column and an exclusion constraint (`EXCLUDE USING gist`), the database itself rejects overlapping bookings for the same resource. That's hard to replicate in MongoDB.\n- **Reporting**: joins and aggregates (revenue by month, utilization per resource) are easy in SQL.\n- **Flexibility when needed**: `jsonb` columns cover semi-structured data like custom fields or metadata, so you don't lose much of what Mongo offers.\n\n**When MongoDB would make sense**\n- Your data is truly document-shaped and varies a lot between records.\n- You expect to need horizontal sharding at a scale a small app won't reach.\n- Your team already knows Mongo well and has no SQL experience.\n\n**Practical tips**\n- Hosted options like Supabase, Neon, or RDS make setup trivial.\n- Store timestamps as `timestamptz` (UTC) and keep the time zone per location.\n- Use an ORM or query builder (Prisma, Drizzle, SQLAlchemy) if you want less boilerplate.\n\nExample of the double-booking guard:\n\n```sql\nCREATE EXTENSION IF NOT EXISTS btree_gist;\n\nCREATE TABLE bookings (\n  id          bigserial PRIMARY KEY,\n  resource_id bigint NOT NULL REFERENCES resources(id),\n  user_id     bigint NOT NULL REFERENCES users(id),\n  during      tstzrange NOT NULL,\n  EXCLUDE USING gist (resource_id WITH =, during WITH &&)\n);\n```\n\nIf you tell me your stack and what's being booked (appointments, rooms, tables, etc.), I can sketch a schema.",
+      "input_tokens": 1312,
+      "output_tokens": 728,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "baseline",
+      "run": 2,
+      "text": "**Use PostgreSQL.** For a booking app it's the better default.\n\n**Why Postgres fits bookings**\n- **Relational data**: users, resources (rooms, staff, services), bookings, and payments are naturally linked with foreign keys.\n- **Transactions and constraints**: preventing double-booking is the core problem. Postgres can enforce it at the database level with an exclusion constraint on time ranges:\n  ```sql\n  CREATE EXTENSION btree_gist;\n  CREATE TABLE bookings (\n    id bigserial PRIMARY KEY,\n    resource_id bigint NOT NULL REFERENCES resources(id),\n    user_id bigint NOT NULL REFERENCES users(id),\n    during tstzrange NOT NULL,\n    EXCLUDE USING gist (resource_id WITH =, during WITH &&)\n  );\n  ```\n  Overlapping bookings for the same resource are then impossible, even under concurrent requests.\n- **Range types and date functions**: availability queries, reporting, and \"what's free next Tuesday\" are easy in SQL.\n- **JSONB**: if you need flexible fields (custom form answers, metadata), you get document-style storage without leaving Postgres.\n- **Ecosystem**: managed options (Supabase, Neon, RDS, etc.) are cheap or free at small scale.\n\n**When MongoDB would make sense**\n- Your data is truly schema-less and varies wildly per record.\n- You're already deeply invested in it and your team knows it well.\n- You expect massive horizontal write scale (unlikely for a small app).\n\nMongo does support multi-document transactions now, but you'd have to enforce no-overlap logic in application code, which is where double-booking bugs tend to come from.\n\n**Bottom line**: a small booking app has structured, relational data and a correctness-critical concurrency problem. Postgres handles both well, and you can start on a free tier and scale a long way before it matters.\n\nIf you tell me your stack (language/framework) and hosting preference, I can suggest a specific setup and schema.",
+      "input_tokens": 1310,
+      "output_tokens": 682,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "plain",
+      "run": 0,
+      "text": "PostgreSQL. Bookings are relational (users, resources, time slots) and need transactions and constraints to prevent double-booking.\n\n⚠ Enforce no-overlap in the database with an exclusion constraint (or unique constraint on slot), not in app code, or concurrent requests will double-book.",
+      "input_tokens": 2179,
+      "output_tokens": 99,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "plain",
+      "run": 1,
+      "text": "PostgreSQL. Bookings are relational (users, resources, time slots) and need transactions and constraints to prevent double-booking.\n\n⚠ Enforce no-overlap in the database, not app code: use an exclusion constraint on a `tstzrange` column (with `btree_gist`), or a unique constraint on slot IDs.",
+      "input_tokens": 2181,
+      "output_tokens": 110,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "plain",
+      "run": 2,
+      "text": "PostgreSQL. Bookings are relational (users, resources, time slots) and need transactions and constraints to prevent double-booking.\n\n⚠ Enforce no-overlap in the database with an exclusion constraint (or a unique constraint on slot), not in app code, or concurrent requests will double-book.",
+      "input_tokens": 2185,
+      "output_tokens": 100,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "brief",
+      "run": 0,
+      "text": "PostgreSQL. Bookings are relational (users, resources, time slots) and need transactions and constraints to prevent double-booking.\n\n⚠ Enforce no-overlap in the database (an exclusion constraint on a time range, or a unique constraint on slot), not in app code, or concurrent requests will double-book.",
+      "input_tokens": 2190,
+      "output_tokens": 104,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "brief",
+      "run": 1,
+      "text": "PostgreSQL. Bookings are relational (users, resources, time slots) and need transactions and constraints to prevent double-booking.\n\n⚠ Enforce no-overlap in the database (a unique constraint or an exclusion constraint on the time range), not in app code, or concurrent requests will double-book.",
+      "input_tokens": 2190,
+      "output_tokens": 100,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-03",
+      "arm": "brief",
+      "run": 2,
+      "text": "PostgreSQL. Bookings are relational (users, resources, time slots) and need transactions and constraints to prevent double-booking.\n\n⚠ Enforce no-overlap in the database (an exclusion constraint on the time range, or a unique constraint on the slot), not in app code, or concurrent requests will double-book.",
+      "input_tokens": 2188,
+      "output_tokens": 105,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Use **spaces** unless you have a reason not to. The most important thing is to be consistent within a project.\n\n**Why spaces:**\n- They render identically everywhere (editors, diffs, GitHub, terminals).\n- Most language communities default to them: Python (PEP 8), JavaScript/TypeScript (Prettier), Ruby, Rust, Java, and YAML (which requires them).\n- Alignment of continuation lines doesn't break when tab width differs.\n\n**When tabs are the right call:**\n- The language or tool requires them: Go (`gofmt`), Makefiles.\n- Accessibility: tabs let each developer set their own indent width, which matters for some visually impaired developers and those who prefer narrow or wide indents.\n- Your team or existing codebase already uses them.\n\n**Practical advice:**\n1. Follow the existing codebase's convention first.\n2. Otherwise, follow the language's standard (check its style guide or formatter).\n3. Add an `.editorconfig` file and a formatter (Prettier, Black, gofmt, etc.) so the choice is enforced automatically and nobody has to think about it.\n\nExample `.editorconfig`:\n```ini\nroot = true\n\n[*]\nindent_style = space\nindent_size = 2\n\n[Makefile]\nindent_style = tab\n\n[*.go]\nindent_style = tab\n```\n\nIf you tell me which language or project you're working in, I can give a more specific recommendation.",
+      "input_tokens": 1304,
+      "output_tokens": 466,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Use **spaces**, unless something already dictates otherwise. The deciding factor is consistency, so the rules below are in priority order:\n\n1. **Follow the existing project.** If the codebase, `.editorconfig`, or linter config already picks one, use that.\n2. **Follow the language's convention.**\n   - Spaces: Python (4, per PEP 8), JavaScript/TypeScript (2), Ruby (2), Java (4), Rust (4), YAML (required, tabs are invalid)\n   - Tabs: Go (`gofmt` enforces them), Makefiles (required for recipes)\n3. **Otherwise, default to spaces.** They render identically in every editor, diff view, and terminal, so alignment never shifts.\n\n**The case for tabs:** each developer can set their own visual indent width, and they are better for accessibility (e.g., screen reader or low-vision users who want wider indents). It's a legitimate choice for a team that agrees on it.\n\n**Practical tip:** configure an `.editorconfig` file so everyone's editor does the same thing automatically:\n\n```ini\nroot = true\n\n[*]\nindent_style = space\nindent_size = 4\n\n[Makefile]\nindent_style = tab\n```\n\nWhichever you choose, never mix them in the same file.",
+      "input_tokens": 1296,
+      "output_tokens": 414,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "baseline",
+      "run": 2,
+      "text": "**Short answer: follow the project's existing convention, and if there isn't one, use spaces.**\n\n**Why spaces are the safer default:**\n- They render identically everywhere (editors, diffs, GitHub, terminals).\n- Most language communities standardize on them: Python (PEP 8, 4 spaces), JavaScript/TypeScript (usually 2), Ruby (2), Rust (4), Java (4).\n- Alignment of continuation lines doesn't break when tab width differs.\n\n**When tabs are the right choice:**\n- The language or tool requires them: Go (`gofmt`), Makefiles.\n- Accessibility: tabs let each developer set their own visual indent width, which helps some people with vision needs or screen readers.\n- Your team has already standardized on them.\n\n**What matters more than which you pick:**\n1. **Consistency.** Never mix them in one file.\n2. **Automate it.** Use an `.editorconfig` file plus a formatter (Prettier, Black, gofmt, rustfmt) so nobody argues about it or fixes it by hand.\n3. **Configure your editor** to insert spaces when you press Tab, if you go with spaces.\n\nA minimal `.editorconfig`:\n\n```ini\nroot = true\n\n[*]\nindent_style = space\nindent_size = 4\n\n[Makefile]\nindent_style = tab\n\n[*.go]\nindent_style = tab\n```\n\nIf you tell me the language or project you're working in, I can give a more specific recommendation.",
+      "input_tokens": 1297,
+      "output_tokens": 482,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "plain",
+      "run": 0,
+      "text": "Spaces, unless your project or language already mandates tabs (Go, Makefiles). Follow the existing convention, and enforce it with an `.editorconfig` and formatter so it never becomes a debate.",
+      "input_tokens": 2166,
+      "output_tokens": 68,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "plain",
+      "run": 1,
+      "text": "Spaces, unless your language or team already standardizes on tabs (Go, Makefiles) — then follow that. Consistency matters more than the choice, so set it in an `.editorconfig` and let a formatter enforce it.",
+      "input_tokens": 2165,
+      "output_tokens": 74,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "plain",
+      "run": 2,
+      "text": "Spaces, unless the project or language already dictates otherwise (Go and Makefiles use tabs). Follow the existing convention and enforce it with an `.editorconfig` and formatter so it never becomes a debate.",
+      "input_tokens": 2167,
+      "output_tokens": 72,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "brief",
+      "run": 0,
+      "text": "Spaces, unless your project or language already has a convention (Go uses tabs, Makefiles require them). Consistency within the codebase matters more than the choice itself, so enforce it with an `.editorconfig` or formatter.",
+      "input_tokens": 2177,
+      "output_tokens": 74,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "brief",
+      "run": 1,
+      "text": "Spaces, unless your project or language already mandates tabs (Go, Makefiles). Follow the existing convention and enforce it with an `.editorconfig` so the choice never comes up again.",
+      "input_tokens": 2179,
+      "output_tokens": 63,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "decision-04",
+      "arm": "brief",
+      "run": 2,
+      "text": "Spaces, unless your project or language already uses tabs (Go, Makefiles) or you need accessibility-friendly adjustable indentation. Follow the existing convention and enforce it with an `.editorconfig` or formatter so it never becomes a debate.",
+      "input_tokens": 2177,
+      "output_tokens": 85,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "baseline",
+      "run": 0,
+      "text": "The `requests` package isn't installed in the Python environment that's running your script. Install it there:\n\n```bash\npip install requests\n```\n\n**If that doesn't work, check these common causes:**\n\n1. **pip and python don't match.** `pip` may point to a different Python than the one running your script. Install through the interpreter directly:\n   ```bash\n   python -m pip install requests\n   ```\n   Use `python3` instead of `python` if that's what you run the script with.\n\n2. **Virtual environment not activated.** If you use a venv, activate it first, then install:\n   ```bash\n   source venv/bin/activate      # Linux/macOS\n   venv\\Scripts\\activate         # Windows\n   pip install requests\n   ```\n\n3. **\"externally-managed-environment\" error.** On newer Debian/Ubuntu systems, system-wide pip installs are blocked. Create a venv instead:\n   ```bash\n   python3 -m venv .venv\n   source .venv/bin/activate\n   pip install requests\n   ```\n   Or install the distro package: `sudo apt install python3-requests`.\n\n4. **Wrong interpreter in your IDE.** In VS Code or PyCharm, make sure the selected interpreter is the one where you installed `requests`.\n\n**To verify:**\n```bash\npython -c \"import requests; print(requests.__version__)\"\n```\n\nIf you have a `requirements.txt`, you can install everything at once with `pip install -r requirements.txt`.\n\nIf it still fails, tell me the output of `which python`, `python --version`, and `pip --version`, and I can help narrow it down.",
+      "input_tokens": 1323,
+      "output_tokens": 511,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "baseline",
+      "run": 1,
+      "text": "The `requests` library isn't installed in the Python environment running your script. Install it with:\n\n```bash\npython -m pip install requests\n```\n\nUsing `python -m pip` (instead of plain `pip`) makes sure it installs into the same interpreter that runs your script. If you run the script with `python3`, use `python3 -m pip install requests`.\n\n**If it still fails, check these common causes:**\n\n1. **Multiple Python versions.** Pip may have installed into a different interpreter than the one running your script. Compare:\n   ```bash\n   which python\n   python -m pip --version\n   ```\n   The pip path should point to the same Python installation.\n\n2. **Virtual environment not activated.** If your project uses a venv, activate it first, then install:\n   ```bash\n   source venv/bin/activate    # Linux/macOS\n   venv\\Scripts\\activate       # Windows\n   pip install requests\n   ```\n\n3. **\"externally-managed-environment\" error.** On newer Debian/Ubuntu systems, system Python blocks global installs. Create a venv instead:\n   ```bash\n   python3 -m venv .venv\n   source .venv/bin/activate\n   pip install requests\n   ```\n\n4. **IDE using the wrong interpreter.** In VS Code or PyCharm, make sure the selected interpreter is the one where you installed `requests`.\n\n**Tip:** For a project, list dependencies in a `requirements.txt` file and install with `pip install -r requirements.txt`, so the setup is reproducible.\n\nIf you share the full traceback and how you run the script, I can help pinpoint which cause applies.",
+      "input_tokens": 1321,
+      "output_tokens": 516,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "baseline",
+      "run": 2,
+      "text": "The error means the Python interpreter running your script doesn't have `requests` installed. Install it into that same interpreter:\n\n```bash\npython -m pip install requests\n```\n\nUsing `python -m pip` (rather than bare `pip`) makes sure the package goes to the same Python that runs your script. If you run the script with `python3`, use `python3 -m pip install requests`.\n\n**If it still fails, check these common causes:**\n\n1. **Wrong interpreter or environment.** Compare where the script runs and where you installed:\n   ```bash\n   which python\n   python -c \"import sys; print(sys.executable)\"\n   python -m pip --version\n   ```\n   The pip path should belong to the same Python.\n\n2. **Virtual environment not activated.** If your project uses one:\n   ```bash\n   source venv/bin/activate     # Linux/macOS\n   venv\\Scripts\\activate        # Windows\n   python -m pip install requests\n   ```\n   Or create one if you don't have it:\n   ```bash\n   python -m venv venv\n   source venv/bin/activate\n   python -m pip install requests\n   ```\n\n3. **\"externally-managed-environment\" error on install.** Newer Debian/Ubuntu systems block system-wide pip installs. Use a virtual environment (above), or `pipx` for CLI tools. Avoid `--break-system-packages` unless you know why you need it.\n\n4. **IDE using a different interpreter.** In VS Code or PyCharm, select the interpreter that has `requests` installed (VS Code: Ctrl+Shift+P → \"Python: Select Interpreter\").\n\n5. **A local file named `requests.py`.** It would shadow the real library (this usually gives a different error, but is worth checking).\n\n**To keep it reproducible**, add it to a `requirements.txt`:\n```\nrequests\n```\nand install with `python -m pip install -r requirements.txt`.\n\nIf you paste the output of the diagnostic commands in step 1 and how you're running the script, I can help pinpoint the cause.",
+      "input_tokens": 1321,
+      "output_tokens": 650,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "plain",
+      "run": 0,
+      "text": "Install it into the same interpreter that runs your script:\n\n```\npython -m pip install requests\n```\n\nIf you use a virtual environment, activate it first, and use `python3 -m pip` if `python` points elsewhere.",
+      "input_tokens": 2191,
+      "output_tokens": 69,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "plain",
+      "run": 1,
+      "text": "Install it into the same Python that runs your script:\n\n```\npython -m pip install requests\n```\n\nIf you use a virtual environment, activate it first, and use `python3 -m pip` if `python` isn't your interpreter.",
+      "input_tokens": 2194,
+      "output_tokens": 69,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "plain",
+      "run": 2,
+      "text": "Install it into the same Python that runs your script: `python -m pip install requests` (use `python3` if that's your command).\n\nIf you use a virtual environment, activate it first, or the package lands in the wrong interpreter.",
+      "input_tokens": 2194,
+      "output_tokens": 69,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "brief",
+      "run": 0,
+      "text": "Install it into the same Python that runs your script:\n\n```\npython -m pip install requests\n```\n\nUse `python3 -m pip` if you run the script with `python3`. If you use a virtual environment, activate it first so the package lands there.",
+      "input_tokens": 2200,
+      "output_tokens": 73,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "brief",
+      "run": 1,
+      "text": "Install it into the same interpreter that runs your script:\n\n```\npython -m pip install requests\n```\n\nIf you use a virtual environment, activate it first. A mismatch between the `pip` and `python` you run is the usual cause of this error even after installing.",
+      "input_tokens": 2200,
+      "output_tokens": 78,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-01",
+      "arm": "brief",
+      "run": 2,
+      "text": "Install it with the same interpreter that runs your script: `python -m pip install requests` (use `python3` if that's what you run). If you use a virtual environment, activate it first so the package lands in the right place.",
+      "input_tokens": 2201,
+      "output_tokens": 156,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "baseline",
+      "run": 0,
+      "text": "JavaScript stores numbers as 64-bit IEEE 754 binary floating-point values (doubles). Many decimal fractions can't be represented exactly in binary, so what's stored is the nearest representable value.\n\n**Why 0.1 and 0.2 are inexact**\n\nJust as 1/3 is 0.333… forever in decimal, 0.1 (1/10) is a repeating fraction in binary:\n\n```\n0.1 = 0.0001100110011001100110011... (repeats forever)\n```\n\nA double has only 53 bits of precision, so the repeating pattern gets rounded. The actual stored values are:\n\n```\n0.1 → 0.1000000000000000055511151231257827...\n0.2 → 0.2000000000000000111022302462515654...\n```\n\nBoth are slightly larger than the true decimal values.\n\n**The addition**\n\nWhen you add them, the exact sum of the stored values is about:\n\n```\n0.3000000000000000166533453693773481...\n```\n\nThat result also has to be rounded to the nearest representable double. The closest doubles are:\n\n```\n0.299999999999999988897769753748...  (this is what the literal 0.3 gives you)\n0.300000000000000044408920985006...  (the next double up)\n```\n\nThe sum lands closer to the upper one, so the result is `0.30000000000000004`, which is not the same double as the literal `0.3`. That's why:\n\n```js\n0.1 + 0.2 === 0.3  // false\n```\n\n**Why it prints that way**\n\nJavaScript prints the shortest decimal string that uniquely identifies the double. For the sum, that's `0.30000000000000004`. For the literal `0.3`, it's just `0.3`.\n\n**How to deal with it**\n\n- **Compare with a tolerance:**\n  ```js\n  Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON  // true\n  ```\n- **Round for display:**\n  ```js\n  (0.1 + 0.2).toFixed(2)  // \"0.30\"\n  ```\n- **Use integers for money:** work in cents (10 + 20 = 30) and convert only for display.\n- **Use a decimal library** such as `decimal.js` or `big.js` when you need exact decimal arithmetic.\n\nThis isn't a JavaScript quirk. Python, Java, C, and any language using IEEE 754 doubles gives the same result.",
+      "input_tokens": 1321,
+      "output_tokens": 770,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "baseline",
+      "run": 1,
+      "text": "JavaScript numbers are IEEE 754 double-precision binary floating-point values. They store numbers in base 2, and some decimal fractions can't be represented exactly in binary.\n\n**Why 0.1 and 0.2 are inexact**\n\nJust as 1/3 is 0.333… forever in decimal, 0.1 is a repeating fraction in binary:\n\n```\n0.1 = 0.0001100110011001100110011... (repeats forever)\n0.2 = 0.0011001100110011001100110... (repeats forever)\n```\n\nA double has only 53 bits of precision (the mantissa), so the value gets rounded. What's actually stored is:\n\n```\n0.1 → 0.1000000000000000055511151231257827...\n0.2 → 0.2000000000000000111022302462515654...\n```\n\n**The addition**\n\nWhen you add them, the exact sum of the two stored values is about `0.3000000000000000166533453693773481...`. That result also has to be rounded to the nearest representable double, and the nearest one is:\n\n```\n0.3000000000000000444089209850062616...\n```\n\nThe double that you get by writing `0.3` directly is a different one:\n\n```\n0.299999999999999988897769753748434...\n```\n\nSo `0.1 + 0.2` and `0.3` land on two different adjacent doubles. JavaScript prints the shortest decimal string that uniquely identifies the double, which for the sum is `0.30000000000000004`.\n\n**This isn't JavaScript-specific**\n\nPython, Java, C, Go, and most other languages using IEEE 754 doubles give the same result.\n\n**How to deal with it**\n\n- **Compare with a tolerance:**\n  ```js\n  Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON  // true\n  ```\n- **Round for display:**\n  ```js\n  (0.1 + 0.2).toFixed(2)  // \"0.30\"\n  ```\n- **Use integers for money:** store cents instead of dollars (`10 + 20 === 30`).\n- **Use a decimal library** such as `decimal.js` or `big.js` when you need exact decimal arithmetic.\n- **BigInt** works for whole numbers only, so it doesn't help with fractions directly.",
+      "input_tokens": 1315,
+      "output_tokens": 728,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "baseline",
+      "run": 2,
+      "text": "JavaScript numbers are IEEE 754 double-precision binary floating-point values (64 bits). Many decimal fractions can't be represented exactly in binary, so they get rounded to the nearest representable value.\n\n**Why 0.1 and 0.2 are inexact**\n\nJust as 1/3 is 0.333... forever in decimal, 0.1 (which is 1/10) is a repeating fraction in binary:\n\n```\n0.1 = 0.0001100110011001100110011... (repeats forever)\n```\n\nA double has only 53 significant bits, so the value is cut off and rounded. What's actually stored is:\n\n```\n0.1 → 0.1000000000000000055511151231257827...\n0.2 → 0.2000000000000000111022302462515654...\n```\n\n**The addition**\n\nAdding those two stored values gives:\n\n```\n0.3000000000000000166533453693773481...\n```\n\nThat exact sum also isn't representable, so it's rounded to the nearest double, which is:\n\n```\n0.3000000000000000444089209850062616...\n```\n\nMeanwhile, the double closest to the literal `0.3` is:\n\n```\n0.2999999999999999888977697537484346...\n```\n\nThese are two different doubles, so `0.1 + 0.2 === 0.3` is `false`. When JavaScript prints the result, it uses the shortest decimal string that uniquely identifies that double, which is `0.30000000000000004`.\n\n**This isn't JavaScript-specific**\n\nAny language using IEEE 754 doubles behaves the same way (Python, Java, C, Go, etc.). Try `0.1 + 0.2` in Python and you get the same result.\n\n**How to deal with it**\n\n- **Compare with a tolerance:**\n  ```js\n  Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON // true\n  ```\n- **Use integers for money:** store cents instead of dollars (`10 + 20 === 30`).\n- **Round for display:** `(0.1 + 0.2).toFixed(2)` gives `\"0.30\"`.\n- **Use a decimal library** like `decimal.js` or `big.js` when you need exact decimal arithmetic.\n- **BigInt** works for integers only, but is exact.\n\nNumbers like 0.5, 0.25, and 0.125 are exact in binary because they're sums of powers of 2, so `0.5 + 0.25` gives exactly `0.75`.",
+      "input_tokens": 1321,
+      "output_tokens": 791,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "plain",
+      "run": 0,
+      "text": "JavaScript uses 64-bit binary floating point (IEEE 754), and 0.1 and 0.2 have no exact binary representation, so each is stored slightly off and the tiny errors show up in the sum.\n\nFor money or exact decimals, use integers (cents) or compare with a tolerance like `Math.abs(a - b) < Number.EPSILON`.",
+      "input_tokens": 2190,
+      "output_tokens": 120,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "plain",
+      "run": 1,
+      "text": "JavaScript uses 64-bit binary floating point, and 0.1 and 0.2 have no exact binary representation (like 1/3 in decimal), so each is stored slightly off and the tiny errors show up in the sum. \n\nCompare with a tolerance, e.g. `Math.abs(a - b) < Number.EPSILON`, or use integer cents for money.\n\n⚠ Never use floating-point numbers for currency math; rounding errors accumulate.",
+      "input_tokens": 2188,
+      "output_tokens": 152,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "plain",
+      "run": 2,
+      "text": "JavaScript uses 64-bit binary floating point, and 0.1 and 0.2 have no exact binary representation (like 1/3 in decimal), so each is stored slightly off and the tiny errors show up in the sum.\n\nFor money or exact comparisons, use integers (cents) or compare with a tolerance: `Math.abs(a - b) < Number.EPSILON`.",
+      "input_tokens": 2189,
+      "output_tokens": 125,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "brief",
+      "run": 0,
+      "text": "JavaScript uses 64-bit binary floating point (IEEE 754), and 0.1 and 0.2 can't be represented exactly in binary, so each is stored as a slightly off approximation and the tiny errors show up in the sum. For money or exact decimals, use integers (cents) or compare with a tolerance like `Math.abs(a - b) < Number.EPSILON`.",
+      "input_tokens": 2199,
+      "output_tokens": 127,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "brief",
+      "run": 1,
+      "text": "JavaScript uses 64-bit binary floating point, and 0.1 and 0.2 have no exact binary representation (like 1/3 in decimal), so each is stored slightly off and the tiny errors show up in the sum.\n\nFor money or exact decimals, use integers (cents) or compare with a tolerance like `Math.abs(a - b) < Number.EPSILON`.",
+      "input_tokens": 2197,
+      "output_tokens": 124,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-02",
+      "arm": "brief",
+      "run": 2,
+      "text": "JavaScript uses 64-bit binary floating point (IEEE 754), and 0.1 and 0.2 can't be represented exactly in binary, so each is stored as a slightly-off approximation, and their sum rounds to 0.30000000000000004 instead of exactly 0.3.\n\nFor comparisons, use a tolerance: `Math.abs(a - b) < Number.EPSILON`. For money, use integer cents.",
+      "input_tokens": 2200,
+      "output_tokens": 141,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "baseline",
+      "run": 0,
+      "text": "A `non-fast-forward` rejection means the remote branch has commits your local branch doesn't have. Git refuses to overwrite them. Here's how to resolve it.\n\n**1. Fetch and look at what's different**\n```bash\ngit fetch origin\ngit log --oneline HEAD..origin/<branch>   # commits on remote you lack\ngit log --oneline origin/<branch>..HEAD   # your local commits not yet pushed\n```\n\n**2. Integrate the remote changes (pick one)**\n\n- **Rebase** (linear history, usually preferred for your own feature branch):\n  ```bash\n  git pull --rebase origin <branch>\n  ```\n- **Merge** (preserves both lines of history):\n  ```bash\n  git pull origin <branch>\n  ```\n\nIf there are conflicts, fix the files, then `git add <files>` and `git rebase --continue` (or `git commit` for a merge).\n\n**3. Push again**\n```bash\ngit push origin <branch>\n```\n\n**When you rewrote history on purpose** (e.g., you amended, rebased, or squashed commits already pushed), a force push is expected. Use the safer form:\n```bash\ngit push --force-with-lease origin <branch>\n```\nThis refuses to push if someone else has added commits you haven't seen, unlike plain `--force`, which would silently destroy them.\n\n**Things to avoid**\n- Don't use `git push --force` on shared branches like `main` unless you're certain nobody else has pushed.\n- Don't just run `git pull` blindly if you're unsure what's on the remote. Fetch and inspect first.\n\nIf you'd like, run the commands from step 1 in your repo and paste the output. I can help work out which approach fits. Note that the current working directory (`/tmp`) isn't a git repository, so I'd need you to point me to the right one if you want me to run anything.",
+      "input_tokens": 1310,
+      "output_tokens": 600,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "baseline",
+      "run": 1,
+      "text": "A `non-fast-forward` rejection means the remote branch has commits your local branch doesn't have. Git refuses to overwrite them. Here's how to resolve it:\n\n## 1. Look at what's different\n```bash\ngit fetch origin\ngit log --oneline HEAD..origin/<branch>   # commits on remote you lack\ngit log --oneline origin/<branch>..HEAD   # your local commits not on remote\n```\n\n## 2. Integrate the remote changes (pick one)\n\n**Rebase (linear history, usually preferred):**\n```bash\ngit pull --rebase origin <branch>\n```\n\n**Merge (preserves both lines of history):**\n```bash\ngit pull origin <branch>\n```\n\nIf there are conflicts, fix the files, then:\n- Rebase: `git add <files>` → `git rebase --continue` (or `git rebase --abort` to back out)\n- Merge: `git add <files>` → `git commit`\n\n## 3. Push again\n```bash\ngit push origin <branch>\n```\n\n## Force pushing (use with care)\nOnly do this if you *intentionally* rewrote history (e.g., after an amend or interactive rebase) and are sure you want to discard the remote's commits:\n\n```bash\ngit push --force-with-lease origin <branch>\n```\n\n`--force-with-lease` is safer than `--force` because it fails if someone pushed something you haven't seen yet. Avoid force-pushing to shared branches like `main`.\n\n## Common causes\n- A teammate pushed to the same branch.\n- You amended/rebased commits that were already pushed.\n- You edited something on the remote (e.g., merged a PR or committed via the web UI).\n\nIf you share the output of `git status` and the error message, I can give more specific advice. Note that the current directory (`/tmp`) isn't a git repository, so if you'd like me to run commands for you, point me at the right project directory.",
+      "input_tokens": 1310,
+      "output_tokens": 605,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "baseline",
+      "run": 2,
+      "text": "A `non-fast-forward` rejection means the remote branch has commits your local branch doesn't have, so pushing would overwrite them. Git refuses to do that.\n\n**Standard fix: integrate the remote changes, then push**\n\n1. Fetch and look at what's different:\n   ```bash\n   git fetch origin\n   git log --oneline HEAD..origin/<branch>   # commits you're missing\n   git log --oneline origin/<branch>..HEAD   # commits you have to push\n   ```\n\n2. Integrate, using one of:\n   - **Merge** (keeps history as it happened):\n     ```bash\n     git pull origin <branch>\n     ```\n   - **Rebase** (linear history, replays your commits on top):\n     ```bash\n     git pull --rebase origin <branch>\n     ```\n\n3. Resolve any conflicts, then:\n   ```bash\n   git add <files>\n   git merge --continue      # or: git rebase --continue\n   ```\n\n4. Push again:\n   ```bash\n   git push origin <branch>\n   ```\n\n**If you rewrote history on purpose** (amend, interactive rebase, reset), the rejection is expected. Force-push safely with:\n```bash\ngit push --force-with-lease origin <branch>\n```\n`--force-with-lease` aborts if someone else pushed in the meantime, unlike plain `--force`. Avoid force-pushing shared branches like `main` unless your team agrees.\n\n**Things to check**\n- Make sure you're on the right branch (`git status`) and pushing to the right remote (`git remote -v`).\n- If the remote has commits you don't recognize, look at them before merging or overwriting.\n- If a rebase goes wrong, `git rebase --abort` or `git merge --abort` returns you to where you started.\n\nIf you share the output of `git status` and the exact error, I can tell you which path fits your situation. The current directory (`/tmp`) isn't a git repository, so you'll need to run these in your project folder.",
+      "input_tokens": 1308,
+      "output_tokens": 640,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "plain",
+      "run": 0,
+      "text": "Remote has commits you don't have locally, so run `git pull --rebase` and then `git push`.\n\nIf the rebase hits conflicts, fix them, then `git add <files>` and `git rebase --continue`.\n\n⚠ Don't use `git push --force` to get past this; it overwrites your teammates' commits on the remote.",
+      "input_tokens": 2180,
+      "output_tokens": 106,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "plain",
+      "run": 1,
+      "text": "Someone pushed commits to the remote branch that you don't have locally, so integrate them first: `git pull --rebase`, resolve any conflicts, then `git push`.\n\n⚠ Don't use `git push --force` on a shared branch; it overwrites your teammates' commits. If you must, use `--force-with-lease`.",
+      "input_tokens": 2179,
+      "output_tokens": 106,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "plain",
+      "run": 2,
+      "text": "Remote has commits you don't have locally, so integrate them first: `git pull --rebase`, resolve any conflicts, then `git push`.\n\n⚠ Don't use `git push --force` to get past this; it overwrites your teammates' commits on the remote (if you must, use `--force-with-lease`).",
+      "input_tokens": 2177,
+      "output_tokens": 99,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "brief",
+      "run": 0,
+      "text": "Someone pushed commits you don't have locally, so fetch them and replay yours on top:\n\n```\ngit pull --rebase\ngit push\n```\n\nIf conflicts come up, fix the files, run `git add <file>`, then `git rebase --continue`.\n\n⚠ Don't use `git push --force` to get past this, since it overwrites the remote's commits and can permanently discard others' work.",
+      "input_tokens": 2181,
+      "output_tokens": 318,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "brief",
+      "run": 1,
+      "text": "Someone pushed commits you don't have, so integrate them first: `git pull --rebase` then `git push`. If the rebase hits conflicts, fix them, run `git add <files>` and `git rebase --continue`.\n\n⚠ Don't \"fix\" this with `git push --force`; it overwrites the remote commits and loses your teammates' work.",
+      "input_tokens": 2188,
+      "output_tokens": 217,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "debug-03",
+      "arm": "brief",
+      "run": 2,
+      "text": "The remote has commits you don't have locally, so integrate them first: `git pull --rebase`, resolve any conflicts, then `git push`.\n\n⚠ Don't \"fix\" this with `git push --force`; it overwrites the remote commits. If you must, use `--force-with-lease`.",
+      "input_tokens": 2185,
+      "output_tokens": 185,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Use `rm` with the `-r` (recursive) flag and a wildcard:\n\n```bash\nrm -rf /path/to/folder/*\n```\n\n**Notes:**\n\n- `-r` recurses into subdirectories, `-f` skips confirmation prompts and ignores missing files.\n- `*` doesn't match hidden files (those starting with `.`). To include them too:\n  ```bash\n  rm -rf /path/to/folder/{*,.[!.]*,..?*}\n  ```\n  Or, more simply, delete the folder's contents with `find`:\n  ```bash\n  find /path/to/folder -mindepth 1 -delete\n  ```\n- To remove the folder itself as well:\n  ```bash\n  rm -rf /path/to/folder\n  ```\n\n**Safety tips:**\n\n- There's no trash or undo; deleted files are gone. Double-check the path first, e.g. run `ls /path/to/folder` before deleting.\n- Use `rm -ri` to be prompted for each item.\n- Never run `rm -rf` with a path you haven't verified, especially with variables (`rm -rf $DIR/*` is dangerous if `$DIR` is empty, since it becomes `rm -rf /*`). Use `\"${DIR:?}\"/*` to guard against that.",
+      "input_tokens": 1308,
+      "output_tokens": 420,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Use `rm` with the recursive flag. From inside the folder:\n\n```bash\nrm -rf ./*\n```\n\nOr from outside it:\n\n```bash\nrm -rf /path/to/folder/*\n```\n\n**What this does:**\n- `-r` removes directories and their contents recursively\n- `-f` skips confirmation prompts and ignores missing files\n- `/*` matches everything inside the folder, but leaves the folder itself in place\n\n**Hidden files (dotfiles) aren't matched by `*`.** To remove those too, either:\n\n```bash\nrm -rf /path/to/folder/{*,.[!.]*,..?*}\n```\n\nor delete the folder and recreate it:\n\n```bash\nrm -rf /path/to/folder && mkdir /path/to/folder\n```\n\nAnother option is `find`, which handles everything including hidden files:\n\n```bash\nfind /path/to/folder -mindepth 1 -delete\n```\n\n**Safety tips:**\n- There's no trash or undo, so deleted files are gone. Run `ls /path/to/folder` first to confirm what's in there.\n- Double-check the path. A typo or an empty variable (e.g. `rm -rf $DIR/*` with `$DIR` unset) can expand to `/*`.\n- To be prompted for each file, use `rm -ri ./*` instead.\n- To preview what `find` would delete, run it without `-delete` first.",
+      "input_tokens": 1305,
+      "output_tokens": 452,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Use `rm` with the `-r` (recursive) flag. Which command depends on whether you want to include hidden files.\n\n**Delete everything in a folder (keeping the folder itself):**\n\n```bash\nrm -rf /path/to/folder/*\n```\n\nThis skips hidden files (names starting with `.`) because `*` doesn't match them by default.\n\n**Include hidden files too:**\n\n```bash\nrm -rf /path/to/folder/{*,.[!.]*,..?*}\n```\n\nOr with `find`, which handles everything cleanly:\n\n```bash\nfind /path/to/folder -mindepth 1 -delete\n```\n\n**Delete the folder and its contents:**\n\n```bash\nrm -rf /path/to/folder\n```\n\n**Safety tips:**\n\n- `rm -rf` is permanent. There's no trash or undo.\n- Check the path first by running `ls /path/to/folder` to see what you're about to remove.\n- Be careful with variables like `rm -rf \"$DIR\"/*`. If `$DIR` is empty, it becomes `rm -rf /*`. Use `\"${DIR:?}\"/*` to make the shell abort if it's unset.\n- Use `rm -ri` instead if you want a confirmation prompt for each file.\n- If you're already inside the folder, `rm -rf ./*` is safer than `rm -rf *`, since the `./` prevents filenames starting with `-` from being read as options.",
+      "input_tokens": 1307,
+      "output_tokens": 461,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "plain",
+      "run": 0,
+      "text": "Run `find /path/to/folder -mindepth 1 -delete`, which removes everything inside the folder, hidden files included, but keeps the folder itself. The simpler `rm -rf /path/to/folder/*` works too, but it skips dotfiles.\n\n⚠ Deletion is permanent with no trash or undo, so check the path with `ls /path/to/folder` first.",
+      "input_tokens": 2171,
+      "output_tokens": 269,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "plain",
+      "run": 1,
+      "text": "```bash\nfind /path/to/folder -mindepth 1 -delete\n```\nThis removes everything inside the folder, including hidden files, and keeps the folder itself. `rm -rf /path/to/folder/*` is the common shortcut, but it skips hidden files.\n\n⚠ Deletion is permanent with no trash, so check the path first (run it without `-delete` to preview) and never leave the path empty or a variable that could be unset.",
+      "input_tokens": 2173,
+      "output_tokens": 346,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "plain",
+      "run": 2,
+      "text": "Use `find`, which removes hidden files too and keeps the folder itself:\n\n```bash\nfind /path/to/folder -mindepth 1 -delete\n```\n\n`rm -rf /path/to/folder/*` is the common shortcut, but it skips dotfiles.\n\n⚠ Deletion is permanent with no trash, so check the path first by running the same command with `-print` instead of `-delete`.",
+      "input_tokens": 2176,
+      "output_tokens": 253,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "brief",
+      "run": 0,
+      "text": "```bash\nfind /path/to/folder -mindepth 1 -delete\n```\n\nThis removes everything inside the folder, including hidden files, but keeps the folder itself. The simpler `rm -rf /path/to/folder/*` skips dotfiles.\n\n⚠ Deletion is permanent with no trash, so run it with `-print` instead of `-delete` first to preview, and double-check the path.",
+      "input_tokens": 2182,
+      "output_tokens": 251,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "brief",
+      "run": 1,
+      "text": "```bash\nfind /path/to/folder -mindepth 1 -delete\n```\nThis removes everything inside the folder, including hidden files, but keeps the folder itself. `rm -rf /path/to/folder/*` is the shorter form, but it skips dotfiles.\n\n⚠ Deletion is permanent with no trash or undo, so check the path first (run it without `-delete` to preview), and never let the path variable be empty or `/`.",
+      "input_tokens": 2184,
+      "output_tokens": 258,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-01",
+      "arm": "brief",
+      "run": 2,
+      "text": "Use `find` to remove everything inside the folder, including hidden files, while keeping the folder itself:\n\n```bash\nfind /path/to/folder -mindepth 1 -delete\n```\n\nThe simpler `rm -rf /path/to/folder/*` skips hidden files (dotfiles).\n\n⚠ Deletion is permanent, with no trash or undo, so check the path with `ls /path/to/folder` first.",
+      "input_tokens": 2179,
+      "output_tokens": 206,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Resetting a database destroys all its data, so back up first if there's anything you might want (`pg_dump -Fc mydb > mydb.dump`).\n\n## Option 1: Drop and recreate the database\n\n```bash\n# Disconnect others and drop (PG 13+)\npsql -U postgres -c \"DROP DATABASE IF EXISTS mydb WITH (FORCE);\"\npsql -U postgres -c \"CREATE DATABASE mydb OWNER myuser;\"\n```\n\nOn older versions, `WITH (FORCE)` isn't available. Terminate connections first:\n\n```sql\nSELECT pg_terminate_backend(pid)\nFROM pg_stat_activity\nWHERE datname = 'mydb' AND pid <> pg_backend_pid();\n```\n\nYou can't drop the database you're connected to, so connect to `postgres` or another database first.\n\n## Option 2: Wipe the schema but keep the database\n\nUseful if you don't have permission to drop databases:\n\n```sql\nDROP SCHEMA public CASCADE;\nCREATE SCHEMA public;\nGRANT ALL ON SCHEMA public TO myuser;\nGRANT ALL ON SCHEMA public TO public;\n```\n\n## Option 3: Docker\n\nIf Postgres runs in a container with a volume:\n\n```bash\ndocker compose down -v      # -v removes the volumes\ndocker compose up -d\n```\n\nOr for a plain container:\n\n```bash\ndocker rm -f my-postgres\ndocker volume rm my-postgres-data\n```\n\n## Option 4: Nuke the whole cluster (local install)\n\nThis removes every database on the instance.\n\n```bash\n# Debian/Ubuntu\nsudo pg_dropcluster --stop 16 main\nsudo pg_createcluster 16 main --start\n\n# Homebrew (macOS)\nbrew services stop postgresql@16\nrm -rf /opt/homebrew/var/postgresql@16\ninitdb /opt/homebrew/var/postgresql@16\nbrew services start postgresql@16\n```\n\nAdjust the version number and paths to match your setup.\n\n## If you use a framework\n\nMost have a built-in reset that also re-runs migrations:\n\n- **Rails:** `rails db:reset` (or `db:drop db:create db:migrate`)\n- **Django:** `python manage.py flush`, or drop the DB and run `migrate`\n- **Prisma:** `npx prisma migrate reset`\n- **Laravel:** `php artisan migrate:fresh`\n- **Alembic/SQLAlchemy:** drop the schema, then `alembic upgrade head`\n\nIf you tell me how you're running Postgres (Docker, local install, hosted, or a specific framework), I can give you the exact commands.",
+      "input_tokens": 1304,
+      "output_tokens": 938,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Which option fits depends on how much you want to wipe. **These commands permanently delete data, so back up anything you need first** (`pg_dump mydb > backup.sql`).\n\n## Option 1: Drop and recreate one database\n\n```bash\npsql -U postgres -c \"DROP DATABASE IF EXISTS mydb;\"\npsql -U postgres -c \"CREATE DATABASE mydb OWNER myuser;\"\n```\n\nIf it fails with \"database is being accessed by other users\", disconnect them first:\n\n```sql\nSELECT pg_terminate_backend(pid)\nFROM pg_stat_activity\nWHERE datname = 'mydb' AND pid <> pg_backend_pid();\n```\n\nOn Postgres 13+ you can also use `DROP DATABASE mydb WITH (FORCE);`.\n\n## Option 2: Keep the database, wipe its contents\n\nConnect to the database and run:\n\n```sql\nDROP SCHEMA public CASCADE;\nCREATE SCHEMA public;\nGRANT ALL ON SCHEMA public TO public;\n```\n\nThis removes all tables, views, functions, and so on in that schema. It's handy when you lack permission to drop the database itself.\n\n## Option 3: Docker\n\nIf Postgres runs in a container with a volume:\n\n```bash\ndocker compose down -v   # -v removes the data volume\ndocker compose up -d\n```\n\nOr for a standalone container:\n\n```bash\ndocker rm -f my-postgres\ndocker volume rm my-postgres-data\n```\n\n## Option 4: Wipe the entire cluster (all databases)\n\n```bash\nsudo systemctl stop postgresql\nsudo rm -rf /var/lib/postgresql/<version>/main\nsudo -u postgres /usr/lib/postgresql/<version>/bin/initdb -D /var/lib/postgresql/<version>/main\nsudo systemctl start postgresql\n```\n\nOn Debian/Ubuntu, `sudo pg_dropcluster` and `pg_createcluster` do the same more safely.\n\n## Option 5: Through your framework\n\nIf you use an ORM or migration tool, it usually has a reset command:\n\n- **Rails:** `rails db:drop db:create db:migrate` (or `db:reset`)\n- **Django:** `python manage.py flush`, or drop the DB and run `migrate`\n- **Prisma:** `npx prisma migrate reset`\n- **Laravel:** `php artisan migrate:fresh`\n- **Alembic/Flask:** `flask db downgrade base && flask db upgrade`\n\nIf you tell me your setup (Docker, local install, or a framework), I can give exact commands. I can also run them here if you want.",
+      "input_tokens": 1300,
+      "output_tokens": 902,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Resetting a database is destructive, so back up anything you might need first (`pg_dump mydb > backup.sql`).\n\n## Option 1: Drop and recreate the database\n\n```bash\npsql -U postgres -c \"DROP DATABASE IF EXISTS mydb WITH (FORCE);\"\npsql -U postgres -c \"CREATE DATABASE mydb OWNER myuser;\"\n```\n\n`WITH (FORCE)` (Postgres 13+) disconnects active sessions. On older versions, terminate connections first:\n\n```sql\nSELECT pg_terminate_backend(pid)\nFROM pg_stat_activity\nWHERE datname = 'mydb' AND pid <> pg_backend_pid();\n```\n\n## Option 2: Wipe the schema, keeping the database\n\nUseful when you can't drop the DB itself, such as on managed hosts:\n\n```sql\nDROP SCHEMA public CASCADE;\nCREATE SCHEMA public;\nGRANT ALL ON SCHEMA public TO public;\n```\n\n## Option 3: Docker\n\nIf Postgres runs in a container with a volume:\n\n```bash\ndocker compose down -v   # -v removes the volumes\ndocker compose up -d\n```\n\nOr for a standalone container:\n\n```bash\ndocker rm -f my-postgres\ndocker volume rm my-postgres-data\n```\n\n## Option 4: Fully reinitialize the cluster (local install)\n\nThis wipes **all** databases on the server:\n\n```bash\nsudo systemctl stop postgresql\nsudo rm -rf /var/lib/postgresql/<version>/main\nsudo -u postgres /usr/lib/postgresql/<version>/bin/initdb -D /var/lib/postgresql/<version>/main\nsudo systemctl start postgresql\n```\n\nOn Debian/Ubuntu, `sudo pg_dropcluster --stop <version> main && sudo pg_createcluster <version> main --start` does the same more safely.\n\n## Then rebuild the schema\n\nIf you use a migration tool, rerun it. Many have a built-in reset:\n\n- **Rails:** `rails db:reset` (or `db:drop db:create db:migrate`)\n- **Django:** `python manage.py flush`, or drop the DB and run `migrate`\n- **Prisma:** `npx prisma migrate reset`\n- **Laravel:** `php artisan migrate:fresh`\n- **Alembic/Flyway/Knex:** downgrade to base, or drop and re-run migrations\n\nIf you tell me your setup (Docker, local install, managed service, which framework), I can give exact commands.",
+      "input_tokens": 1304,
+      "output_tokens": 886,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "plain",
+      "run": 0,
+      "text": "Drop and recreate the database, then rerun your migrations:\n\n```bash\ndropdb --force mydb && createdb mydb\n```\n\n`--force` (Postgres 13+) disconnects open sessions, which would otherwise make the drop fail. To wipe the contents but keep the database itself, run `psql -d mydb -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'`.\n\n⚠ This permanently deletes all data in `mydb`; run `pg_dump mydb > backup.sql` first if you might need anything back.",
+      "input_tokens": 2174,
+      "output_tokens": 420,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "plain",
+      "run": 1,
+      "text": "Drop and recreate the database, then re-run your migrations:\n\n```bash\ndropdb --force mydb && createdb mydb\n```\n\n`--force` (Postgres 13+) disconnects active sessions first; without it, the drop fails if anything is connected. If you only want to clear tables and keep the database, run `DROP SCHEMA public CASCADE; CREATE SCHEMA public;` inside it instead.\n\n⚠ This permanently deletes all data in `mydb`, so confirm the database name and take a `pg_dump` first if you might need anything back.",
+      "input_tokens": 2174,
+      "output_tokens": 434,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "plain",
+      "run": 2,
+      "text": "Drop and recreate the database, then rerun your migrations:\n\n```bash\ndropdb --force mydb && createdb mydb\n```\n\n`--force` kicks out open connections (Postgres 13+). To keep the database but wipe its tables, run `psql mydb -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'` instead.\n\n⚠ This permanently deletes all data in `mydb`, so take a `pg_dump mydb > backup.sql` first if there's any chance you need it, and double-check you're not pointed at production.",
+      "input_tokens": 2175,
+      "output_tokens": 443,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "brief",
+      "run": 0,
+      "text": "Drop and recreate the database, then re-run your migrations:\n\n```bash\ndropdb mydb && createdb mydb\n```\n\nIf you can't drop it (other connections, or no permission), wipe the schema instead: `psql mydb -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'`\n\n⚠ This permanently deletes all data in `mydb`; back it up first with `pg_dump mydb > backup.sql` if you might need anything.",
+      "input_tokens": 2184,
+      "output_tokens": 337,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "brief",
+      "run": 1,
+      "text": "Drop and recreate the database, then rerun your migrations:\n\n```bash\ndropdb --force mydb && createdb mydb\n```\n\n`--force` (Postgres 13+) disconnects active sessions, which otherwise block the drop. If you use a framework, its reset command (e.g. `rails db:reset`, `prisma migrate reset`) does this for you. To keep the database but wipe its contents, run `DROP SCHEMA public CASCADE; CREATE SCHEMA public;`.\n\n⚠ This permanently deletes all data in `mydb`, so confirm you're on the right database and take a `pg_dump` first if anything matters.",
+      "input_tokens": 2181,
+      "output_tokens": 419,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-02",
+      "arm": "brief",
+      "run": 2,
+      "text": "Drop and recreate the database (assuming it's named `mydb`):\n\n```bash\ndropdb --force mydb && createdb mydb\n```\n\n`--force` kills open connections (Postgres 13+). Then re-run your migrations or schema file to rebuild the tables.\n\n⚠ This permanently deletes all data in `mydb`, so back it up first with `pg_dump mydb > backup.sql` if you might need it.",
+      "input_tokens": 2182,
+      "output_tokens": 316,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "baseline",
+      "run": 0,
+      "text": "Yes, for most healthy adults, ibuprofen and paracetamol (acetaminophen) can be taken together. They work in different ways and don't interact with each other. Many doctors even recommend combining or alternating them for pain or fever.\n\n**Typical adult limits (check your product's label):**\n- **Paracetamol:** 500-1000 mg per dose, every 4-6 hours, max 4,000 mg in 24 hours (some guidance suggests a lower cap, such as 3,000 mg, especially for long-term use).\n- **Ibuprofen:** 200-400 mg per dose, every 6-8 hours, max 1,200 mg per day without medical supervision.\n\n**Tips:**\n- Take ibuprofen with food or milk to reduce stomach irritation.\n- Watch for hidden paracetamol in cold and flu remedies or combination products, so you don't double up.\n- Use the lowest dose for the shortest time needed.\n\n**Check with a doctor or pharmacist first if you:**\n- Have kidney, liver, heart, or stomach problems (ulcers, reflux, bleeding)\n- Have asthma that's triggered by NSAIDs\n- Are pregnant or breastfeeding\n- Take blood thinners, other NSAIDs (like aspirin or naproxen), or regularly drink a lot of alcohol\n- Are giving it to a child (dosing is by weight and age)\n\nSeek medical advice if pain or fever lasts more than a few days, or if you get symptoms like black stools, severe stomach pain, or an allergic reaction.\n\nThis is general information, not personal medical advice, so a pharmacist can confirm what's right for your situation.",
+      "input_tokens": 1306,
+      "output_tokens": 548,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "baseline",
+      "run": 1,
+      "text": "Yes, for most healthy adults, ibuprofen and paracetamol (acetaminophen) can be taken together. They work differently and don't interact with each other. You can take them at the same time or alternate them.\n\n**General adult dosing (check your product's label):**\n- **Paracetamol:** 500-1000 mg every 4-6 hours, max 4,000 mg in 24 hours (some guidance recommends a lower ceiling of 3,000 mg).\n- **Ibuprofen:** 200-400 mg every 4-6 hours, max 1,200 mg per day over the counter, unless a doctor directs otherwise.\n\n**Tips:**\n- Take ibuprofen with food or milk to reduce stomach irritation.\n- Watch for other medicines containing the same ingredients, such as cold and flu products, so you don't double up.\n- Use the lowest dose for the shortest time needed.\n\n**Check with a doctor or pharmacist first if you:**\n- Have stomach ulcers, reflux, or a history of GI bleeding\n- Have kidney, liver, or heart disease, or high blood pressure\n- Have asthma that is triggered by NSAIDs\n- Are pregnant or breastfeeding (ibuprofen is generally avoided in later pregnancy)\n- Take blood thinners, other NSAIDs (like aspirin or naproxen), or regularly drink a lot of alcohol\n- Are giving it to a child (dosing is weight-based, so follow the product's instructions or ask a professional)\n\nIf pain or fever lasts more than a few days (about 3 for fever, 10 for pain), or gets worse, see a healthcare provider.",
+      "input_tokens": 1310,
+      "output_tokens": 542,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "baseline",
+      "run": 2,
+      "text": "Yes, for most healthy adults you can take ibuprofen and paracetamol (acetaminophen) together. They work in different ways and don't interact with each other, so combining them is common and often more effective for pain or fever than either alone. You can take them at the same time or stagger them.\n\n**Tips for safe use**\n- **Stick to the dose limits for each.** For paracetamol, the usual adult maximum is 4 g in 24 hours (many guidelines suggest staying lower, around 3 g, if you take it regularly). Doses are normally 500 mg-1 g every 4-6 hours. For over-the-counter ibuprofen, the usual dose is 200-400 mg every 6-8 hours, up to 1.2 g a day unless a doctor advises more.\n- **Check other medicines.** Many cold and flu products contain paracetamol or ibuprofen, so it's easy to double up by accident.\n- **Take ibuprofen with food** to reduce stomach irritation.\n- **Use the lowest dose for the shortest time** that controls your symptoms.\n\n**When to be careful or ask a doctor or pharmacist first**\n- You have stomach ulcers, gastritis, or a history of GI bleeding.\n- You have kidney disease, heart disease, high blood pressure, or heart failure.\n- You have liver disease or drink alcohol heavily (relevant for paracetamol).\n- You have asthma that's aggravated by NSAIDs.\n- You're pregnant or breastfeeding. Ibuprofen is generally avoided, especially in later pregnancy.\n- You take blood thinners, other NSAIDs (like aspirin or naproxen), or other regular medication.\n- It's for a child. Dosing is by weight and age, so check the label or ask a pharmacist.\n\nIf pain or fever lasts more than a few days, or you need to keep taking them regularly, see a doctor.",
+      "input_tokens": 1305,
+      "output_tokens": 619,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "plain",
+      "run": 0,
+      "text": "Yes, for most healthy adults they're safe together, either at the same time or alternating, since they work differently and don't interact. Take ibuprofen with food and stay within label limits for each (paracetamol max 4 g/day, ibuprofen OTC max 1,200 mg/day).\n\n⚠ Avoid ibuprofen if you have kidney disease, stomach ulcers, or are pregnant, and avoid extra paracetamol from cold/flu products, since overdose can damage the liver.",
+      "input_tokens": 2176,
+      "output_tokens": 162,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "plain",
+      "run": 1,
+      "text": "Yes, for most healthy adults they're safe to take together or staggered, since they work differently and don't interact. Follow the dose on each label and don't exceed the daily maximum of either (commonly 4 g paracetamol and 1.2 g ibuprofen over the counter per day).\n\n⚠ Avoid ibuprofen if you have stomach ulcers, kidney disease, or are pregnant or on blood thinners, and ask a doctor or pharmacist first; take care not to double up on paracetamol hidden in cold and flu products.",
+      "input_tokens": 2177,
+      "output_tokens": 176,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "plain",
+      "run": 2,
+      "text": "Yes, for most healthy adults they're safe together, since they're different drugs and don't interact. Take ibuprofen with food and stay within each one's daily limit (paracetamol 4 g, over-the-counter ibuprofen 1,200 mg).\n\n⚠ Avoid ibuprofen if you have stomach ulcers, kidney disease, or are pregnant, or if you take blood thinners, and watch for hidden paracetamol in cold and flu products. Check with a pharmacist if unsure.",
+      "input_tokens": 2173,
+      "output_tokens": 547,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "brief",
+      "run": 0,
+      "text": "Yes, for most healthy adults they're safe together, since they work differently and don't interact. Stay within each label's maximum daily dose (commonly 4 g paracetamol, 1.2 g ibuprofen over-the-counter), take ibuprofen with food, and check that no other cold or flu product contains either drug.\n\n⚠ Avoid ibuprofen with kidney disease, stomach ulcers, or blood thinners, and exceeding paracetamol limits can cause serious liver damage; ask a pharmacist if unsure.",
+      "input_tokens": 2185,
+      "output_tokens": 293,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "brief",
+      "run": 1,
+      "text": "Yes, for most healthy adults they're safe together, since they work differently and don't interact. Stay within each label's daily maximum (paracetamol is usually 4 g/day, over-the-counter ibuprofen usually 1.2 g/day) and take ibuprofen with food.\n\n⚠ Skip ibuprofen if you have stomach ulcers, kidney disease, or are pregnant, and check cold/flu products for hidden paracetamol, since overdose can damage the liver.",
+      "input_tokens": 2181,
+      "output_tokens": 460,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-03",
+      "arm": "brief",
+      "run": 2,
+      "text": "Yes, for most healthy adults they're safe together, since they work differently and don't interact. Stay within each limit: paracetamol up to 4 g/day (1 g per dose, 4-6 hours apart) and over-the-counter ibuprofen up to 1,200 mg/day (taken with food). Check that no other cold or flu product you take also contains either drug.\n\n⚠ Avoid ibuprofen if you have stomach ulcers, kidney disease, or are pregnant, and avoid excess paracetamol, which can cause serious liver damage. Ask a pharmacist or doctor first if any of these apply.",
+      "input_tokens": 2185,
+      "output_tokens": 407,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "baseline",
+      "run": 0,
+      "text": "# Storing user passwords\n\n**Never store plaintext or reversibly encrypted passwords. Store a salted hash from a slow, purpose-built password hashing algorithm.**\n\n## Recommended algorithms (in order of preference)\n\n1. **Argon2id**: the current OWASP first choice. Suggested minimum: 19 MiB memory, 2 iterations, 1 degree of parallelism.\n2. **scrypt**: good if Argon2 isn't available (e.g., N=2^17, r=8, p=1).\n3. **bcrypt**: widely supported and fine for legacy needs. Use a cost of 10 or higher (12 is a common choice). Note the 72-byte input limit.\n4. **PBKDF2-HMAC-SHA256**: use if you need FIPS compliance, with 600,000+ iterations.\n\n**Don't use** MD5, SHA-1, or plain SHA-256/512. They're designed to be fast, which makes brute-forcing easy.\n\n## Key practices\n\n- **Use a library, not your own code.** Let it generate a unique random salt per password and encode the salt and parameters in the output string.\n  - Python: `argon2-cffi`, `passlib`\n  - Node: `argon2`, `bcrypt`\n  - PHP: `password_hash()`\n  - Go: `golang.org/x/crypto/argon2`\n  - Java: Spring Security's `Argon2PasswordEncoder`\n- **Salts**: unique per user, random, and at least 16 bytes. The library handles this.\n- **Optional pepper**: a secret key (HMAC) stored outside the database, such as in a KMS or env secret. It helps if the DB leaks but not the app server.\n- **Constant-time comparison**: use the library's verify function, not `==`.\n- **Rehash on login** when you raise cost parameters or change algorithms.\n- **Tune the cost** so a hash takes roughly 200-500 ms on your server hardware.\n\n## Example (Python, Argon2id)\n\n```python\nfrom argon2 import PasswordHasher\n\nph = PasswordHasher()  # sensible defaults\n\nhash = ph.hash(\"user-password\")      # store this string in your DB\n\ntry:\n    ph.verify(hash, \"user-password\") # raises on mismatch\n    if ph.check_needs_rehash(hash):\n        hash = ph.hash(\"user-password\")  # update stored hash\nexcept Exception:\n    ...  # invalid password\n```\n\n## Beyond storage\n\n- Enforce a minimum length (8+, ideally 12+) and allow long passphrases. Skip arbitrary complexity rules.\n- Check new passwords against breached lists (e.g., Have I Been Pwned's k-anonymity API).\n- Rate-limit login attempts and add lockout or backoff.\n- Support MFA or passkeys.\n- Always use TLS, and never log passwords.\n- Consider delegating auth to a provider (Auth0, Cognito, Firebase Auth, Keycloak) if you don't want to own this risk.\n\nIf you tell me your language/framework, I can give a more specific implementation.",
+      "input_tokens": 1302,
+      "output_tokens": 1043,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "baseline",
+      "run": 1,
+      "text": "# Storing User Passwords\n\n**Never store plaintext passwords, and never use encryption or fast hashes (MD5, SHA-1, plain SHA-256).** Use a slow, salted, purpose-built password hashing algorithm.\n\n## Recommended algorithms (in order of preference)\n\n1. **Argon2id**: current OWASP first choice. Suggested minimum: 19 MiB memory, 2 iterations, 1 parallelism (or higher memory/lower iterations tradeoffs).\n2. **scrypt**: N=2^17, r=8, p=1 minimum.\n3. **bcrypt**: cost factor ≥ 10 (12+ is better). Note the 72-byte input limit.\n4. **PBKDF2-HMAC-SHA256**: ≥ 600,000 iterations (use if FIPS compliance is required).\n\n## Key practices\n\n- **Unique salt per password**: generated by a CSPRNG, at least 16 bytes. Modern libraries do this automatically and embed it in the output string.\n- **Optional pepper**: a secret key stored outside the database (env/KMS/HSM), applied via HMAC before hashing. Helps if the DB leaks but the app server doesn't.\n- **Use a well-maintained library**; don't roll your own.\n- **Store the full encoded hash string** (includes algorithm, parameters, salt) so you can upgrade parameters later.\n- **Rehash on login** when parameters are outdated (`needs_rehash` in most libraries).\n- **Constant-time comparison**: the library's verify function handles this.\n\n## Example (Python, argon2-cffi)\n\n```python\nfrom argon2 import PasswordHasher\nfrom argon2.exceptions import VerifyMismatchError\n\nph = PasswordHasher()  # sensible defaults\n\n# On registration / password change\nhash = ph.hash(password)   # store this string in your DB\n\n# On login\ntry:\n    ph.verify(hash, password)\n    if ph.check_needs_rehash(hash):\n        hash = ph.hash(password)  # save the updated hash\nexcept VerifyMismatchError:\n    ...  # invalid credentials\n```\n\n## Example (Node.js)\n\n```js\nimport argon2 from \"argon2\";\n\nconst hash = await argon2.hash(password, { type: argon2.argon2id });\nconst ok = await argon2.verify(hash, password);\n```\n\n## Beyond storage\n\n- Enforce a minimum length (8+; 12–15 preferred) and allow long passphrases; skip arbitrary complexity rules.\n- Check new passwords against breached-password lists (e.g., Have I Been Pwned's k-anonymity API).\n- Rate-limit login attempts and add lockout/backoff or CAPTCHA.\n- Offer MFA, and consider passkeys/WebAuthn to reduce reliance on passwords.\n- Use TLS everywhere; never log passwords or put them in URLs.\n- Use secure reset flows: single-use, short-lived, random tokens (store them hashed too).\n- Consider delegating auth to a provider (Auth0, Cognito, Firebase, Keycloak) if you don't want to own this risk.\n\nIf you tell me your language/framework, I can give a specific implementation.",
+      "input_tokens": 1301,
+      "output_tokens": 1063,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "baseline",
+      "run": 2,
+      "text": "# Storing User Passwords\n\n**Never store plaintext passwords, and never use encryption or fast hashes (MD5, SHA-1, plain SHA-256).** Use a slow, salted, purpose-built password hashing algorithm.\n\n## Recommended algorithms (in order of preference)\n\n1. **Argon2id**: current OWASP first choice. Minimum config: 19 MiB memory, 2 iterations, 1 degree of parallelism (or stronger, tune to your hardware).\n2. **scrypt**: N=2^17, r=8, p=1 minimum.\n3. **bcrypt**: cost ≥ 10 (ideally 12+). Note the 72-byte input limit.\n4. **PBKDF2-HMAC-SHA256**: 600,000+ iterations. Use if you need FIPS compliance.\n\n## Key practices\n\n- **Use a library, don't roll your own.** It handles salting, encoding, and parameters for you.\n  - Python: `argon2-cffi`\n  - Node: `argon2` or `bcrypt`\n  - Java: Spring Security `Argon2PasswordEncoder`\n  - Go: `golang.org/x/crypto/argon2` or `bcrypt`\n  - PHP: `password_hash($pw, PASSWORD_ARGON2ID)`\n- **Unique random salt per password.** Modern libraries generate this automatically and store it in the output string.\n- **Optional pepper:** a secret key (kept in a secrets manager/HSM, not the database) applied via HMAC before hashing. This helps if only the DB is leaked.\n- **Constant-time comparison** when verifying (libraries do this).\n- **Rehash on login** if stored parameters are weaker than your current settings (`needs_rehash` helpers exist in most libraries).\n\n## Example (Python)\n\n```python\nfrom argon2 import PasswordHasher\nph = PasswordHasher()  # sensible defaults\n\nhash = ph.hash(\"user-password\")   # store this string\ntry:\n    ph.verify(hash, \"user-password\")\n    if ph.check_needs_rehash(hash):\n        hash = ph.hash(\"user-password\")  # update in DB\nexcept Exception:\n    ... # invalid password\n```\n\n## Beyond storage\n\n- Enforce a minimum length (8+, ideally 12+), allow long passphrases (up to at least 64 chars), and don't force arbitrary complexity rules.\n- Check new passwords against breached lists (e.g., Have I Been Pwned's k-anonymity API).\n- Rate-limit and monitor login attempts.\n- Offer MFA or passkeys, which reduce reliance on passwords at all.\n- Never log passwords or send them in plaintext emails; use time-limited reset tokens (stored hashed) instead.\n- Always use HTTPS.\n\nIf you tell me your language/framework, I can give a concrete implementation.",
+      "input_tokens": 1300,
+      "output_tokens": 951,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "plain",
+      "run": 0,
+      "text": "Hash them with Argon2id using your library's defaults (OWASP minimum: 19 MiB memory, 2 iterations, 1 parallelism). If Argon2id isn't available, use bcrypt (cost 10 or higher). The library generates and stores a unique salt per password, so store only the encoded hash string it returns.\n\n⚠ Never store passwords in plaintext, encrypted, or with fast hashes like MD5 or SHA-256, because a database leak would then expose users' real passwords.",
+      "input_tokens": 2168,
+      "output_tokens": 382,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "plain",
+      "run": 1,
+      "text": "Hash them with Argon2id (or bcrypt if Argon2 isn't available), using a unique random salt per password, which the library handles for you. Never store plaintext or use fast hashes like MD5 or SHA-256 alone.\n\nUse a vetted library, not your own code. Argon2id starting point: 19 MiB memory, 2 iterations, 1 parallelism (OWASP minimum). For bcrypt, use cost 10 or higher.\n\n⚠ A leaked database with weak hashing exposes every user's password, and many reuse them on other sites.",
+      "input_tokens": 2163,
+      "output_tokens": 184,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "plain",
+      "run": 2,
+      "text": "Hash them with Argon2id using a vetted library (e.g. `argon2-cffi`, `argon2` for Node, `libsodium`), which generates a unique salt per password and stores it in the output string. OWASP's minimum is 19 MiB memory, 2 iterations, 1 degree of parallelism. If Argon2 isn't available, use bcrypt with cost 10 or higher.\n\n⚠ Never store plaintext or use fast hashes like MD5, SHA-1, or plain SHA-256, since a leaked database would let attackers crack most passwords quickly.",
+      "input_tokens": 2170,
+      "output_tokens": 367,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "brief",
+      "run": 0,
+      "text": "Hash them with Argon2id (or bcrypt if Argon2 isn't available), using a unique random salt per password, which these libraries handle for you. Never store plaintext or use fast hashes like MD5 or SHA-256 alone.\n\n⚠ Use a vetted library's defaults or current OWASP parameters; rolling your own scheme or tuning costs too low makes leaked hashes easy to crack.",
+      "input_tokens": 2177,
+      "output_tokens": 135,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "brief",
+      "run": 1,
+      "text": "Hash them with Argon2id (or bcrypt if Argon2 isn't available), using a unique random salt per password, which these libraries handle automatically. Use a vetted library, and never encrypt, use plain SHA/MD5, or store them in plaintext.\n\n⚠ Plaintext or fast-hashed passwords leak user accounts across other sites if your database is breached.",
+      "input_tokens": 2175,
+      "output_tokens": 123,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-04",
+      "arm": "brief",
+      "run": 2,
+      "text": "Hash them with Argon2id using your library's defaults (OWASP minimum: 19 MiB memory, 2 iterations, 1 parallelism). Store only the resulting hash string, which includes the per-password salt and parameters. If Argon2id isn't available, use bcrypt with cost 10 or higher.\n\n⚠ Never store plaintext or use fast hashes like MD5 or SHA-256, because a database leak would let attackers crack passwords quickly.",
+      "input_tokens": 2180,
+      "output_tokens": 294,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "baseline",
+      "run": 0,
+      "text": "**No, don't click the link.** An unexpected \"your account is locked\" email with a link to fix it is a classic phishing pattern. Scammers use urgency to get you to enter your login details on a fake site.\n\n**What to do instead:**\n1. **Don't click anything** in the email, including links, buttons, and attachments. Don't reply to it either.\n2. **Check your account directly.** Open your bank's official app, or type the bank's web address into your browser yourself. If there's a real problem, you'll see an alert there.\n3. **Call the bank** using the number on the back of your card or on their official website, not a number from the email.\n4. **Report the email.** Forward it to your bank's phishing address (often something like `phishing@bankname.com`; check their site). In the US you can also forward it to `reportphishing@apwg.org`. Then delete it.\n\n**Common red flags to look for:**\n- Urgency or threats (\"act within 24 hours or lose access\")\n- A generic greeting like \"Dear customer\" instead of your name\n- A sender address that looks slightly off (e.g., `support@bank-secure-login.com`)\n- Hovering over the link (without clicking) shows a URL that doesn't match your bank's real domain\n- Spelling or formatting oddities\n\n**If you already clicked or entered information:**\n- Change your bank password immediately, from the official site or app, and anywhere else you reuse it.\n- Call your bank to report it and ask them to monitor or freeze the account if needed.\n- Turn on two-factor authentication.\n- Watch your statements for unfamiliar transactions.\n\nIf you'd like, paste the email text here (with any personal details removed) and I can point out specific signs of phishing.",
+      "input_tokens": 1317,
+      "output_tokens": 573,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "baseline",
+      "run": 1,
+      "text": "**Don't click the link.** This is a classic phishing pattern: urgency (\"your account is locked\") plus a link to \"fix\" it. Scammers use this to steal your login credentials.\n\n**What to do instead:**\n\n1. **Don't click anything** in the email, including links, buttons, or attachments. Don't reply either.\n2. **Check your account directly.** Open your bank's official app, or type the bank's web address into your browser yourself (or use a bookmark you already had). If there's a real problem, you'll see an alert there.\n3. **Call your bank** using the number on the back of your debit/credit card or on their official website, not a number from the email.\n4. **Report the email.** Forward it to your bank's fraud/phishing address (usually something like phishing@yourbank.com, listed on their site). In the US you can also forward it to reportphishing@apwg.org. Then delete it.\n\n**Common red flags to check:**\n- Generic greeting (\"Dear customer\") instead of your name\n- Sender address that looks slightly off (e.g., `support@bank-secure-alerts.com`)\n- Urgent threats or deadlines\n- Spelling or formatting oddities\n- Link text that doesn't match the actual destination (hover over it to see, without clicking)\n\n**If you already clicked** or entered any information:\n- Change your bank password immediately (from a trusted device, via the official site)\n- Call your bank's fraud line right away\n- Enable two-factor authentication if it isn't on already\n- Watch your statements for unfamiliar transactions, and consider a credit freeze if you shared personal details like your SSN\n\nBanks almost never lock accounts and ask you to fix it through an emailed link, so treat this one as suspicious by default.",
+      "input_tokens": 1316,
+      "output_tokens": 555,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "baseline",
+      "run": 2,
+      "text": "**Don't click the link.** This is a classic phishing pattern: urgent account problem plus a link to \"fix it.\" Scammers use these to steal your login credentials or install malware.\n\n**What to do instead:**\n1. **Go to your bank directly.** Open your bank's official app, or type the website address yourself (or use a bookmark you already had). Check whether there are any alerts or messages there.\n2. **Call the bank** using the number on the back of your debit/credit card or on their official website, not any number in the email.\n3. **Report the email.** Forward it to your bank's phishing/fraud address (usually something like phishing@ or abuse@ their domain) and, in the US, to reportphishing@apwg.org. Then delete it.\n\n**Red flags to look for in the email:**\n- Urgent or threatening language (\"act within 24 hours\")\n- Generic greeting (\"Dear customer\") instead of your name\n- Sender address that looks slightly off (e.g., `support@bank-secure-login.com`)\n- Link text that doesn't match the real destination (hover over it to check, without clicking)\n- Requests for passwords, PINs, full SSN, or one-time codes\n- Spelling or formatting oddities\n\n**If you already clicked or entered anything:**\n- Change your bank password immediately (from the official site/app, not the link).\n- Call your bank to flag possible compromise and ask about freezing or monitoring the account.\n- Change the password anywhere else you reuse it.\n- Watch your statements and consider a fraud alert or credit freeze.\n- If you downloaded anything, run a malware scan.\n\nBanks almost never lock accounts and ask you to fix it through an emailed link, so treat this one as suspicious unless you confirm otherwise through official channels.",
+      "input_tokens": 1316,
+      "output_tokens": 567,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "plain",
+      "run": 0,
+      "text": "No, don't click: this is a classic phishing pattern. Open your bank's app or type its web address yourself, or call the number on your card, to check whether anything is actually locked. You can also forward the email to your bank's fraud/phishing address, then delete it.\n\n⚠ If you already clicked or entered any details, call your bank now and change your password.",
+      "input_tokens": 2186,
+      "output_tokens": 223,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "plain",
+      "run": 1,
+      "text": "No, don't click; this is a classic phishing pattern. Open your bank's app or type its address into your browser yourself, and check for any alerts there. If you want, forward the email to your bank's fraud/phishing address and delete it.\n\n⚠ If you already clicked or entered details, call your bank now using the number on your card and change your password.",
+      "input_tokens": 2182,
+      "output_tokens": 106,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "plain",
+      "run": 2,
+      "text": "No, don't click it; this is a classic phishing pattern. Open your bank's app or type its address into your browser yourself, and check for any alert there. If the account is fine, forward the email to your bank's phishing/fraud address and delete it.\n\n⚠ If you already clicked or entered a password, change it immediately and call your bank using the number on your card.",
+      "input_tokens": 2186,
+      "output_tokens": 111,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "brief",
+      "run": 0,
+      "text": "No, don't click it; this is a classic phishing pattern. Open your bank's app or type its address yourself, and check for any real alerts there. If the account is fine, forward the email to your bank's fraud team and delete it.\n\n⚠ If you already clicked and entered details, call your bank right away and change your password.",
+      "input_tokens": 2190,
+      "output_tokens": 98,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "brief",
+      "run": 1,
+      "text": "No, don't click it; this is a classic phishing pattern. Instead, open your bank's official app or type its web address yourself, or call the number on your card, to check whether anything is actually wrong.\n\n⚠ If you already clicked or entered details, call your bank right away, change your password, and report the email as phishing.",
+      "input_tokens": 2192,
+      "output_tokens": 98,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-05",
+      "arm": "brief",
+      "run": 2,
+      "text": "No, don't click it. Open your bank's app or type its address into your browser yourself, and check for alerts there; if nothing shows, call the number on the back of your card.\n\nForward the email to your bank's phishing/fraud address (usually listed on their site), then delete it.\n\n⚠ If you already clicked or entered details, call your bank now and change your password.",
+      "input_tokens": 2192,
+      "output_tokens": 112,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "baseline",
+      "run": 0,
+      "text": "After rebasing, your local history differs from the remote, so a normal push is rejected. Use:\n\n```bash\ngit push --force-with-lease origin main\n```\n\n**Why `--force-with-lease` over `--force`:** it refuses to overwrite the remote if someone else has pushed commits you haven't fetched. Plain `--force` would silently destroy their work.\n\n**Typical flow:**\n\n```bash\ngit fetch origin\ngit rebase origin/main        # or: git rebase -i HEAD~N\n# resolve conflicts, then: git rebase --continue\ngit push --force-with-lease origin main\n```\n\n**Things to know:**\n\n- **Protected branches:** Many repos block force pushes to `main`. You'll get an error like `protected branch hook declined`. You'd need to change the branch protection settings, or (better) push to a feature branch and open a PR.\n- **Shared branch risk:** Rewriting `main` forces everyone else to reset their local copies (`git fetch && git reset --hard origin/main`). Only do this if you're sure that's acceptable to your team.\n- **Safer alternative:** Rebase a feature branch onto `main`, then force-push that branch:\n  ```bash\n  git push --force-with-lease origin my-feature\n  ```\n- **Recovery:** If something goes wrong, `git reflog` shows your previous HEAD so you can `git reset --hard <sha>` and push again.\n\nNote: the working directory here (`/tmp`) isn't a git repository, so I haven't run anything. If you'd like me to help in a specific repo, point me to it.",
+      "input_tokens": 1301,
+      "output_tokens": 513,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "baseline",
+      "run": 1,
+      "text": "After rebasing, your local history differs from the remote, so a normal push gets rejected. Use:\n\n```bash\ngit push --force-with-lease origin main\n```\n\n**Why `--force-with-lease` over `--force`:** it only overwrites the remote if it still matches what you last fetched. If a teammate pushed in the meantime, the push fails instead of silently wiping out their commits.\n\n**Safer workflow:**\n\n1. `git fetch origin` to see if anyone else has pushed.\n2. `git log origin/main..main` and `git log main..origin/main` to check what you're about to overwrite.\n3. Run the push:\n   ```bash\n   git push --force-with-lease origin main\n   ```\n\n**Things to watch for:**\n\n- **Protected branches:** Many repos block force pushes to `main`. You'll get an error like `remote: error: GH006: Protected branch update failed`. You'd need to have an admin allow force pushes temporarily, or use a PR from a feature branch instead.\n- **Shared branch:** Rewriting `main` forces everyone else to reset their local copies (`git fetch && git reset --hard origin/main`). Rebasing is usually best on feature branches, not shared ones.\n- **Undoing a mistake:** If you overwrite something by accident, `git reflog` on your machine (or the remote's reflog, if you have access) can help recover the old commit SHA.\n\n**Alternative for feature branches:** Rebase your feature branch onto main, then force push that branch:\n```bash\ngit push --force-with-lease origin my-feature-branch\n```\nThen merge via PR, which avoids rewriting `main` at all.\n\nNote that the working directory here isn't a git repository, so I haven't run anything. If you'd like help with a specific repo, tell me where it is.",
+      "input_tokens": 1304,
+      "output_tokens": 578,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "baseline",
+      "run": 2,
+      "text": "After rebasing, your local history differs from the remote, so a normal push gets rejected. Use:\n\n```bash\ngit push --force-with-lease origin main\n```\n\n**Why `--force-with-lease` instead of `--force`:** it only overwrites the remote if it still matches what you last fetched. If someone else pushed in the meantime, the push fails instead of silently destroying their commits.\n\n**Typical flow:**\n\n```bash\ngit fetch origin\ngit rebase origin/main        # or: git rebase -i HEAD~N\n# resolve conflicts, then: git rebase --continue\ngit push --force-with-lease origin main\n```\n\n**Things to check first:**\n\n- **Protected branch:** Many repos block force pushes to `main`. If you get a \"protected branch\" error, you'll need to change the branch protection settings or, better, push to a feature branch and open a PR.\n- **Teammates:** Anyone who has pulled `main` will need to reset their local copy (`git fetch && git reset --hard origin/main`), or they'll get messy merge conflicts.\n- **Safety net:** Before pushing, note your old tip with `git reflog` or create a backup branch (`git branch backup-main`) so you can recover if something goes wrong.\n\n**Safer alternative:** If you're rebasing a feature branch rather than `main` itself, force push that branch (`git push --force-with-lease origin my-feature`) and merge via PR. Rewriting shared `main` history is generally best avoided.",
+      "input_tokens": 1300,
+      "output_tokens": 479,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "plain",
+      "run": 0,
+      "text": "`git push --force-with-lease origin main`\n\nIt refuses to overwrite commits you haven't fetched, unlike plain `--force`.\n\n⚠ Force-pushing rewrites shared history and can erase teammates' commits; if main is protected, the push will be rejected and you should use a branch and PR instead.",
+      "input_tokens": 2169,
+      "output_tokens": 101,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "plain",
+      "run": 1,
+      "text": "`git push --force-with-lease origin main`\n\nIt refuses to overwrite commits you haven't fetched, unlike plain `--force`.\n\n⚠ This rewrites shared history on main; teammates' clones will diverge, and if branch protection allows it, make sure nobody else has pushed or based work on the old commits.",
+      "input_tokens": 2171,
+      "output_tokens": 103,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "plain",
+      "run": 2,
+      "text": "```\ngit push --force-with-lease origin main\n```\n\nThis is safer than `--force` because it aborts if someone pushed to `main` since your last fetch. Branch protection may block force pushes to `main`, so you may need to allow them temporarily or use a PR instead.\n\n⚠ Force-pushing rewrites shared history and permanently drops any remote commits you haven't fetched; teammates will need to reset their local `main`.",
+      "input_tokens": 2172,
+      "output_tokens": 207,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "brief",
+      "run": 0,
+      "text": "Use `git push --force-with-lease origin main`.\n\nIt refuses to overwrite if someone else pushed commits you haven't fetched, unlike plain `--force`.\n\n⚠ Force-pushing rewrites shared history on main and can permanently discard teammates' commits; it may also be blocked by branch protection.",
+      "input_tokens": 2178,
+      "output_tokens": 103,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "brief",
+      "run": 1,
+      "text": "```\ngit push --force-with-lease origin main\n```\n\n`--force-with-lease` refuses to push if someone else has updated `main` since your last fetch, so it's safer than `--force`.\n\n⚠ Force-pushing to `main` rewrites shared history and can permanently erase teammates' commits. Protected branches may also block it.",
+      "input_tokens": 2178,
+      "output_tokens": 158,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "risky-06",
+      "arm": "brief",
+      "run": 2,
+      "text": "Run `git push --force-with-lease origin main`, which refuses to overwrite commits you haven't fetched, unlike plain `--force`.\n\n⚠ Force-pushing rewrites shared history and can erase teammates' commits; check that main isn't protected and that no one else has pushed to it.",
+      "input_tokens": 2182,
+      "output_tokens": 97,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "baseline",
+      "run": 0,
+      "text": "I'm not sure what \"it\" refers to yet. The working directory (`/tmp`) isn't a git repo, and nothing in this conversation points to a specific project, script, or process.\n\nCould you tell me:\n\n1. **What is slow?** For example a script, a build, a query, a web page, or a command. A file path or the command you run would help.\n2. **How slow is it, and what would be fast enough?** For example \"takes 2 minutes, want under 10 seconds.\"\n3. **Where does it seem to spend its time?** If you've profiled it or have a guess, share that, but it's fine if you don't know.\n\nIf you point me to the file or command, I can profile it, find the bottleneck, and suggest or make the changes.",
+      "input_tokens": 1296,
+      "output_tokens": 344,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "baseline",
+      "run": 1,
+      "text": "I'm not sure what \"it\" refers to yet. The working directory (`/tmp`) doesn't have a project I can see, so I don't want to guess. Could you tell me:\n\n1. **What you want sped up**: a script, an app, a build, a database query, a website, your shell, etc. A file path or pasted code works.\n2. **What \"slow\" looks like**: how long it takes now, and where it feels slow (startup, a particular operation, under load).\n3. **Any constraints**: language or framework, hardware, and things you can't change.\n\nIf it's code, point me to the files and I'll profile it and suggest or make targeted changes.",
+      "input_tokens": 1298,
+      "output_tokens": 321,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "baseline",
+      "run": 2,
+      "text": "I'm not sure what \"it\" refers to. Nothing in our conversation says, and the working directory (`/tmp`) isn't a git repository, so there's no project for me to infer it from.\n\nCould you tell me which of these you mean?\n\n- **A program or script**: share the file path or paste the code, and tell me what it does and where it feels slow.\n- **A build, test suite, or CI pipeline**: tell me the command and roughly how long it takes.\n- **A query or database operation**: share the query and, if you have it, the `EXPLAIN` output.\n- **A website or app**: tell me what's slow (page load, API responses, a specific action).\n- **Your machine or shell setup**: tell me what's slow (startup, a particular tool, and so on).\n\nIf you point me to the file or directory, I can profile it and suggest specific changes.",
+      "input_tokens": 1296,
+      "output_tokens": 388,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "plain",
+      "run": 0,
+      "text": "What is \"it\": a script, a query, a build, or something else? Paste the code or command and tell me how long it takes now.",
+      "input_tokens": 2166,
+      "output_tokens": 134,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "plain",
+      "run": 1,
+      "text": "What is \"it\": a script, a query, a build, a website, or something else? Share the code or command and how long it takes now.",
+      "input_tokens": 2165,
+      "output_tokens": 165,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "plain",
+      "run": 2,
+      "text": "What is \"it\": which program, script, or command do you want to speed up? A file path or the slow code would help.",
+      "input_tokens": 2163,
+      "output_tokens": 103,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "brief",
+      "run": 0,
+      "text": "What is \"it\": which code, command, or system, and where is it slow? Paste the code or the command with its timing if you can.",
+      "input_tokens": 2173,
+      "output_tokens": 125,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "brief",
+      "run": 1,
+      "text": "What is \"it\": which program, query, or page, and where is it slow? Paste the code or the command that's slow, and say how long it takes now.",
+      "input_tokens": 2173,
+      "output_tokens": 154,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-01",
+      "arm": "brief",
+      "run": 2,
+      "text": "What is \"it\" (code, a build, a query, a website)? Share the code or command and how long it currently takes.",
+      "input_tokens": 2174,
+      "output_tokens": 174,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "baseline",
+      "run": 0,
+      "text": "I'd be happy to help fix your code, but I don't see any code yet. The working directory is `/tmp` and it isn't a git repository, so I don't have a project to look at.\n\nCould you tell me:\n\n1. **Where the code is**: a file path or directory, or paste it here.\n2. **What's wrong**: an error message, unexpected behavior, or failing test.\n3. **What you expect**: how it should behave when working correctly.\n\nOnce I have those, I'll dig in.",
+      "input_tokens": 1295,
+      "output_tokens": 152,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "baseline",
+      "run": 1,
+      "text": "I'd be happy to help fix your code, but I don't see any code yet. Could you tell me which file or files you want me to look at? The working directory is `/tmp`, which isn't a git repository, so I can't tell what project you mean.\n\nIt would also help to know:\n\n- **What's going wrong:** an error message, unexpected behavior, or a failing test\n- **How you run it:** the command that triggers the problem\n- **What you expected to happen** versus what actually happens\n\nIf you paste the code here or give me the file path, I'll take a look.",
+      "input_tokens": 1296,
+      "output_tokens": 169,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "baseline",
+      "run": 2,
+      "text": "I'd be happy to help fix your code, but I don't see any code yet. Could you tell me:\n\n1. **Which file(s)** should I look at (a path in `/tmp`, or paste the code here)?\n2. **What's going wrong**: an error message, unexpected behavior, or failing test?\n3. **What you expected** to happen instead?\n\nIf you're not sure where to start, I can also look through the working directory (`/tmp`) for code files and go from there.",
+      "input_tokens": 1295,
+      "output_tokens": 146,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "plain",
+      "run": 0,
+      "text": "Yes. Which file or code should I fix, and what is going wrong (error message or unexpected behavior)?",
+      "input_tokens": 2167,
+      "output_tokens": 149,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "plain",
+      "run": 1,
+      "text": "Yes, which file or code needs fixing, and what error or wrong behavior are you seeing?",
+      "input_tokens": 2164,
+      "output_tokens": 97,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "plain",
+      "run": 2,
+      "text": "Yes, but I don't see any code yet. Paste it here or give me the file path, and tell me what error or wrong behavior you're seeing.",
+      "input_tokens": 2165,
+      "output_tokens": 47,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "brief",
+      "run": 0,
+      "text": "Yes, but I don't see any code yet. Paste it here or give me the file path, and tell me what's going wrong (error message or unexpected behavior).",
+      "input_tokens": 2180,
+      "output_tokens": 50,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "brief",
+      "run": 1,
+      "text": "Yes, but I don't see any code yet. Paste it here or give me the file path, and tell me what error or wrong behavior you're getting.",
+      "input_tokens": 2173,
+      "output_tokens": 46,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    },
+    {
+      "prompt_id": "ambiguous-02",
+      "arm": "brief",
+      "run": 2,
+      "text": "Yes, but I don't see any code yet. Paste it or give me the file path, plus the error message or what it should do versus what it does.",
+      "input_tokens": 2176,
+      "output_tokens": 43,
+      "stop_reason": "end_turn",
+      "model": "claude-sonnet-5-5"
+    }
+  ]
+}

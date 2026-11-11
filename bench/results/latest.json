@@ -1,0 +1,39 @@
+{
+  "model": "claude-sonnet-5-5",
+  "runs": 3,
+  "created": "2026-11-11T011356Z",
+  "prompt_version": 1,
+  "n_prompts": 24,
+  "arms": {
+    "baseline": {
+      "median_output_tokens": 501.5,
+      "median_words": 209.5,
+      "token_cut_vs_baseline_pct": null,
+      "prompts_longer_than_baseline": [],
+      "input_overhead_tokens": null,
+      "risk_kept_pct": 100.0,
+      "false_alarm_pct": 0.0,
+      "asks_instead_of_guessing_pct": 66.7
+    },
+    "plain": {
+      "median_output_tokens": 101.5,
+      "median_words": 41.5,
+      "token_cut_vs_baseline_pct": 74.9,
+      "prompts_longer_than_baseline": [],
+      "input_overhead_tokens": 869.0,
+      "risk_kept_pct": 100.0,
+      "false_alarm_pct": 13.7,
+      "asks_instead_of_guessing_pct": 83.3
+    },
+    "brief": {
+      "median_output_tokens": 106.5,
+      "median_words": 43.0,
+      "token_cut_vs_baseline_pct": 73.8,
+      "prompts_longer_than_baseline": [],
+      "input_overhead_tokens": 878.0,
+      "risk_kept_pct": 100.0,
+      "false_alarm_pct": 13.7,
+      "asks_instead_of_guessing_pct": 50.0
+    }
+  }
+}

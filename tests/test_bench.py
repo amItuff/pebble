@@ -116,3 +116,31 @@ class ReportTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RunCliTests(unittest.TestCase):
+    """run_cli.py against a fake `claude` executable. Synthetic data only."""
+
+    def test_run_cli_with_fake_binary(self):
+        with tempfile.TemporaryDirectory() as t:
+            fake = Path(t) / "claude"
+            fake.write_text(
+                "#!/usr/bin/env python3\nimport json,sys\na=sys.argv\n"
+                "sysp=a[a.index('--system-prompt')+1]\n"
+                "assert '--tools' in a and a[a.index('--tools')+1]=='' and '--no-session-persistence' in a\n"
+                "print(json.dumps({'result':'fake','stop_reason':'end_turn','is_error':False,"
+                "'usage':{'input_tokens':2,'cache_creation_input_tokens':100,'cache_read_input_tokens':50,'output_tokens':10 if 'Find the real question' in sysp else 90},"
+                "'modelUsage':{'fake-model':{}}}))\n")
+            fake.chmod(0o755)
+            out = Path(t) / "o.json"
+            r = subprocess.run([sys.executable, str(ROOT / "bench/run_cli.py"), "--claude-bin", str(fake), "--runs", "2",
+                                "--limit", "2", "--workers", "3", "--out", str(out)], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr + r.stdout)
+            data = json.loads(out.read_text())
+        self.assertEqual(len(data["records"]), 2 * 3 * 2)
+        self.assertEqual(data["model"], "fake-model")
+        base = [x for x in data["records"] if x["arm"] == "baseline"]
+        peb = [x for x in data["records"] if x["arm"] == "plain"]
+        self.assertTrue(all(x["output_tokens"] == 90 for x in base))
+        self.assertTrue(all(x["output_tokens"] == 10 for x in peb))
+        self.assertTrue(all(x["input_tokens"] == 152 for x in base))  # input + cache creation + cache read
